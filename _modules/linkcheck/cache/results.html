@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>linkcheck.cache.results &mdash; LinkChecker 2021-06-17 documentation</title>
+  <title>linkcheck.cache.results &mdash; LinkChecker 2021-06-21 documentation</title>
   
 
   
@@ -70,7 +70,7 @@
             
             
               <div class="version">
-                2021-06-17
+                2021-06-21
               </div>
             
           
@@ -451,11 +451,11 @@
 <span class="sd">    format: {cache key (string) -&gt; result (UrlData.towire())}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">100000</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result_cache_size</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize result cache.&quot;&quot;&quot;</span>
         <span class="c1"># mapping {URL -&gt; cached result}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">max_size</span> <span class="o">=</span> <span class="n">max_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_size</span> <span class="o">=</span> <span class="n">result_cache_size</span>
 
 <div class="viewcode-block" id="ResultCache.get_result"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.cache.results.html#linkcheck.cache.results.ResultCache.get_result">[docs]</a>    <span class="nd">@synchronized</span><span class="p">(</span><span class="n">cache_lock</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
