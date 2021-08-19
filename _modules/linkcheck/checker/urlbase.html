@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>linkcheck.checker.urlbase &mdash; LinkChecker 2021-08-13 documentation</title>
+  <title>linkcheck.checker.urlbase &mdash; LinkChecker 2021-08-19 documentation</title>
   
 
   
@@ -70,7 +70,7 @@
             
             
               <div class="version">
-                2021-08-13
+                2021-08-19
               </div>
             
           
@@ -749,11 +749,11 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ContentMimetypes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mime</span><span class="p">)</span> <span class="o">==</span> <span class="n">ctype</span>
 
 <div class="viewcode-block" id="UrlBase.is_http"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.urlbase.html#linkcheck.checker.urlbase.UrlBase.is_http">[docs]</a>    <span class="k">def</span> <span class="nf">is_http</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return True for http:// or https:// URLs.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Return True for *http://* or *https://* URLs.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheme</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">,</span> <span class="s2">&quot;https&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="UrlBase.is_file"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.urlbase.html#linkcheck.checker.urlbase.UrlBase.is_file">[docs]</a>    <span class="k">def</span> <span class="nf">is_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return True for file:// URLs.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Return True for *file://* URLs.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s2">&quot;file&quot;</span></div>
 
 <div class="viewcode-block" id="UrlBase.is_directory"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.urlbase.html#linkcheck.checker.urlbase.UrlBase.is_directory">[docs]</a>    <span class="k">def</span> <span class="nf">is_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -761,7 +761,7 @@
         <span class="k">return</span> <span class="kc">False</span></div>
 
 <div class="viewcode-block" id="UrlBase.is_local"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.urlbase.html#linkcheck.checker.urlbase.UrlBase.is_local">[docs]</a>    <span class="k">def</span> <span class="nf">is_local</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return True for local (ie. file://) URLs.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Return True for local (ie. *file://*) URLs.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="UrlBase.add_warning"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.urlbase.html#linkcheck.checker.urlbase.UrlBase.add_warning">[docs]</a>    <span class="k">def</span> <span class="nf">add_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>

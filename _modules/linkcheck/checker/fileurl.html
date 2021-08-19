@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>linkcheck.checker.fileurl &mdash; LinkChecker 2021-08-13 documentation</title>
+  <title>linkcheck.checker.fileurl &mdash; LinkChecker 2021-08-19 documentation</title>
   
 
   
@@ -70,7 +70,7 @@
             
             
               <div class="version">
-                2021-08-13
+                2021-08-19
               </div>
             
           
@@ -465,8 +465,8 @@
 
 <div class="viewcode-block" id="prepare_urlpath_for_nt"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.fileurl.html#linkcheck.checker.fileurl.prepare_urlpath_for_nt">[docs]</a><span class="k">def</span> <span class="nf">prepare_urlpath_for_nt</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    URLs like &#39;file://server/path/&#39; result in a path named &#39;/server/path&#39;.</span>
-<span class="sd">    However urllib.url2pathname expects &#39;////server/path&#39;.</span>
+<span class="sd">    URLs like *file://server/path/* result in a path named */server/path*.</span>
+<span class="sd">    However urllib.url2pathname expects *////server/path*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="s1">&#39;|&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;////&quot;</span> <span class="o">+</span> <span class="n">path</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
@@ -545,7 +545,7 @@
 
 <div class="viewcode-block" id="FileUrl.build_base_url"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.fileurl.html#linkcheck.checker.fileurl.FileUrl.build_base_url">[docs]</a>    <span class="k">def</span> <span class="nf">build_base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;The URL is normed according to the platform:</span>
-<span class="sd">         - the base URL is made an absolute file:// URL</span>
+<span class="sd">         - the base URL is made an absolute *file://* URL</span>
 <span class="sd">         - under Windows platform the drive specifier is normed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -662,7 +662,7 @@
 
 <div class="viewcode-block" id="FileUrl.get_os_filename"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.fileurl.html#linkcheck.checker.fileurl.FileUrl.get_os_filename">[docs]</a>    <span class="k">def</span> <span class="nf">get_os_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Construct os specific file path out of the file:// URL.</span>
+<span class="sd">        Construct os specific file path out of the *file://* URL.</span>
 
 <span class="sd">        @return: file name</span>
 <span class="sd">        @rtype: string</span>

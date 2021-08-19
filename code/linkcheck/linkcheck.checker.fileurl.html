@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>linkcheck.checker.fileurl &mdash; LinkChecker 2021-08-13 documentation</title>
+  <title>linkcheck.checker.fileurl &mdash; LinkChecker 2021-08-19 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                2021-08-13
+                2021-08-19
               </div>
             
           
@@ -447,7 +447,7 @@
 <td><p>Check if given path is absolute.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.checker.fileurl.prepare_urlpath_for_nt" title="linkcheck.checker.fileurl.prepare_urlpath_for_nt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prepare_urlpath_for_nt</span></code></a>(path)</p></td>
-<td><p>URLs like ‘<a class="reference external" href="file://server/path/">file://server/path/</a>’ result in a path named ‘/server/path’.</p></td>
+<td><p>URLs like <em>file://server/path/</em> result in a path named <em>/server/path</em>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -503,7 +503,7 @@ with it. After that queue the URL data for checking.</p>
 <dt class="sig sig-object py" id="linkcheck.checker.fileurl.FileUrl.build_base_url">
 <span class="sig-name descname"><span class="pre">build_base_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/checker/fileurl.html#FileUrl.build_base_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.checker.fileurl.FileUrl.build_base_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>The URL is normed according to the platform:
-- the base URL is made an absolute <a class="reference external" href="file://">file://</a> URL
+- the base URL is made an absolute <em>file://</em> URL
 - under Windows platform the drive specifier is normed</p>
 </dd></dl>
 
@@ -539,7 +539,7 @@ is checked.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="linkcheck.checker.fileurl.FileUrl.get_os_filename">
 <span class="sig-name descname"><span class="pre">get_os_filename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/checker/fileurl.html#FileUrl.get_os_filename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.checker.fileurl.FileUrl.get_os_filename" title="Permalink to this definition">¶</a></dt>
-<dd><p>Construct os specific file path out of the <a class="reference external" href="file://">file://</a> URL.</p>
+<dd><p>Construct os specific file path out of the <em>file://</em> URL.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>file name</p>
@@ -636,8 +636,8 @@ a slash.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="linkcheck.checker.fileurl.prepare_urlpath_for_nt">
 <span class="sig-prename descclassname"><span class="pre">linkcheck.checker.fileurl.</span></span><span class="sig-name descname"><span class="pre">prepare_urlpath_for_nt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/checker/fileurl.html#prepare_urlpath_for_nt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.checker.fileurl.prepare_urlpath_for_nt" title="Permalink to this definition">¶</a></dt>
-<dd><p>URLs like ‘<a class="reference external" href="file://server/path/">file://server/path/</a>’ result in a path named ‘/server/path’.
-However urllib.url2pathname expects ‘////server/path’.</p>
+<dd><p>URLs like <em>file://server/path/</em> result in a path named <em>/server/path</em>.
+However urllib.url2pathname expects <em>////server/path</em>.</p>
 </dd></dl>
 
 </div>
