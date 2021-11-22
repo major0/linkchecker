@@ -57,6 +57,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="upgrading.html#migrating-from-10-0-to-10-x">Migrating from 10.0 to 10.x</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrading.html#migrating-from-9-x-to-10-0">Migrating from 9.x to 10.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrading.html#migrating-from-8-x-to-9-0">Migrating from 8.x to 9.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrading.html#migrating-from-8-4-to-8-5">Migrating from 8.4 to 8.5</a></li>
@@ -329,10 +330,15 @@
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
 <p>If you are upgrading from older versions of LinkChecker you should
 also read the upgrading documentation stored in <a class="reference internal" href="upgrading.html"><span class="doc">Upgrading</span></a>.</p>
+<p>When installing from source, for application translations to be installed
+<a class="reference external" href="https://pypi.org/project/polib/">polib</a> needs to be installed before LinkChecker. After LinkChecker installation
+<a class="reference external" href="https://pypi.org/project/polib/">polib</a> can be removed.</p>
 <section id="setup-with-pip">
 <h2>Setup with pip<a class="headerlink" href="#setup-with-pip" title="Permalink to this headline"></a></h2>
-<p>If <a class="reference external" href="https://pypi.org/project/pip/">pip</a> is available, this command should install LinkChecker on
-the local system:
+<p><a class="reference external" href="https://pypi.org/project/pip/">pip</a> can be used to install LinkChecker on the local system.</p>
+<p>If you want application translations, first:
+<code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">polib</span></code></p>
+<p>Then this command will install LinkChecker from the latest source:
 <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">git+https://github.com/linkchecker/linkchecker.git</span></code></p>
 </section>
 <section id="setup-for-windows">
@@ -345,7 +351,7 @@ within Windows Subsystem for Linux (WSL) is the preferred option:
 <h2>Setup for macOS<a class="headerlink" href="#setup-for-macos" title="Permalink to this headline"></a></h2>
 <p>Python from Homebrew includes <a class="reference external" href="https://pypi.org/project/pip/">pip</a>. Otherwise <code class="docutils literal notranslate"><span class="pre">get-pip.py</span></code> can be used to
 install <a class="reference external" href="https://pypi.org/project/pip/">pip</a> (untested):
-<a class="reference external" href="https://pip.pypa.io/en/stable/installing/">https://pip.pypa.io/en/stable/installing/</a></p>
+<a class="reference external" href="https://pip.pypa.io/en/stable/installation/">https://pip.pypa.io/en/stable/installation/</a></p>
 </section>
 <section id="setup-for-gnu-linux">
 <h2>Setup for GNU/Linux<a class="headerlink" href="#setup-for-gnu-linux" title="Permalink to this headline"></a></h2>
@@ -365,6 +371,8 @@ an extra <code class="docutils literal notranslate"><span class="pre">python-dev
 </li>
 <li><p>Python requests package from <a class="reference external" href="https://pypi.org/project/requests/">https://pypi.org/project/requests/</a></p></li>
 <li><p>Python Beautiful Soup package from <a class="reference external" href="https://pypi.org/project/beautifulsoup4/">https://pypi.org/project/beautifulsoup4/</a></p></li>
+<li><p><em>Optional, installation time only, for translations:</em>
+polib Python module from <a class="reference external" href="https://pypi.org/project/polib/">https://pypi.org/project/polib/</a></p></li>
 <li><p><em>Optional, for bash-completion:</em>
 argcomplete Python module from <a class="reference external" href="https://pypi.org/project/argcomplete/">https://pypi.org/project/argcomplete/</a></p></li>
 <li><p><em>Optional, for displaying country codes:</em>
