@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.plugins.viruscheck &mdash; LinkChecker 2021-11-08 documentation</title>
+  <title>linkcheck.plugins.viruscheck &mdash; LinkChecker 2021-11-22 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                2021-11-08
+                2021-11-22
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -384,14 +384,14 @@
 </table>
 <dl class="py exception">
 <dt class="sig sig-object py" id="linkcheck.plugins.viruscheck.ClamavError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">linkcheck.plugins.viruscheck.</span></span><span class="sig-name descname"><span class="pre">ClamavError</span></span><a class="reference internal" href="../../_modules/linkcheck/plugins/viruscheck.html#ClamavError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.plugins.viruscheck.ClamavError" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linkcheck.plugins.viruscheck.</span></span><span class="sig-name descname"><span class="pre">ClamavError</span></span><a class="reference internal" href="../../_modules/linkcheck/plugins/viruscheck.html#ClamavError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.plugins.viruscheck.ClamavError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Raised on clamav errors.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="linkcheck.plugins.viruscheck.ClamavConfig">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">linkcheck.plugins.viruscheck.</span></span><span class="sig-name descname"><span class="pre">ClamavConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/plugins/viruscheck.html#ClamavConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.plugins.viruscheck.ClamavConfig" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linkcheck.plugins.viruscheck.</span></span><span class="sig-name descname"><span class="pre">ClamavConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/plugins/viruscheck.html#ClamavConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.plugins.viruscheck.ClamavConfig" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
 <p>Clamav configuration wrapper, with clamd connection method.</p>
 <p>Parse clamav configuration file.</p>
@@ -428,7 +428,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="linkcheck.plugins.viruscheck.ClamdScanner">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">linkcheck.plugins.viruscheck.</span></span><span class="sig-name descname"><span class="pre">ClamdScanner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clamav_conf</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/plugins/viruscheck.html#ClamdScanner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.plugins.viruscheck.ClamdScanner" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linkcheck.plugins.viruscheck.</span></span><span class="sig-name descname"><span class="pre">ClamdScanner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clamav_conf</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/plugins/viruscheck.html#ClamdScanner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.plugins.viruscheck.ClamdScanner" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Virus scanner using a clamd daemon process.</p>
 <p>Initialize clamd daemon process sockets.</p>
@@ -454,7 +454,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="linkcheck.plugins.viruscheck.VirusCheck">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">linkcheck.plugins.viruscheck.</span></span><span class="sig-name descname"><span class="pre">VirusCheck</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/plugins/viruscheck.html#VirusCheck"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.plugins.viruscheck.VirusCheck" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linkcheck.plugins.viruscheck.</span></span><span class="sig-name descname"><span class="pre">VirusCheck</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/plugins/viruscheck.html#VirusCheck"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.plugins.viruscheck.VirusCheck" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">linkcheck.plugins._ContentPlugin</span></code></p>
 <p>Checks the page content for virus infections with clamav.
 A local clamav daemon must be installed.</p>
@@ -473,7 +473,7 @@ A local clamav daemon must be installed.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="linkcheck.plugins.viruscheck.VirusCheck.read_config">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">read_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configparser</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/plugins/viruscheck.html#VirusCheck.read_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.plugins.viruscheck.VirusCheck.read_config" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configparser</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/plugins/viruscheck.html#VirusCheck.read_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.plugins.viruscheck.VirusCheck.read_config" title="Permalink to this definition"></a></dt>
 <dd><p>Read configuration file options.</p>
 </dd></dl>
 
