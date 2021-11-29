@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheckerrc &mdash; LinkChecker 0.0.post1+g995dc9c documentation</title>
+  <title>linkcheckerrc &mdash; LinkChecker 0.0.post1+ga78c78a documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.0.post1+g995dc9c
+                0.0.post1+ga78c78a
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -91,7 +91,13 @@
 <li class="toctree-l2"><a class="reference internal" href="linkchecker.html#examples">EXAMPLES</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linkchecker.html#options">OPTIONS</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="linkchecker.html#general-options">General options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="linkchecker.html#output-options">Output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkchecker.html#output-options">Output options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="linkchecker.html#url-checking-results">URL checking results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linkchecker.html#progress-updates">Progress updates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linkchecker.html#application">Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linkchecker.html#quiet">Quiet</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="linkchecker.html#checking-options">Checking options</a></li>
 </ul>
 </li>
@@ -117,7 +123,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#checking">checking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#filtering">filtering</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#authentication">authentication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#output">output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output">output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#url-checking-results">URL checking results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#progress-updates">Progress updates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application">Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quiet">Quiet</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#output-types">OUTPUT TYPES</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#text">text</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gml">gml</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dot">dot</a></li>
@@ -487,35 +502,24 @@ form.</p>
 </section>
 <section id="output">
 <h3>output<a class="headerlink" href="#output" title="Permalink to this headline"></a></h3>
+<section id="url-checking-results">
+<h4>URL checking results<a class="headerlink" href="#url-checking-results" title="Permalink to this headline"></a></h4>
 <dl class="simple">
-<dt><strong>debug=</strong><em>STRING</em>[<strong>,</strong><em>STRING</em>…]</dt><dd><p>Print debugging output for the given modules. Available debug
-modules are <strong>cmdline</strong>, <strong>checking</strong>, <strong>cache</strong>, <strong>dns</strong>,
-<strong>thread</strong>, <strong>plugins</strong> and <strong>all</strong>. Specifying <strong>all</strong> is an alias
-for specifying all available loggers.
-Command line option: <a class="reference internal" href="linkchecker.html#cmdoption-D"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug</span></code></a></p>
-</dd>
 <dt><strong>fileoutput=</strong><em>TYPE</em>[<strong>,</strong><em>TYPE</em>…]</dt><dd><p>Output to a file <strong>linkchecker-out.</strong><em>TYPE</em>, or
-<strong>$HOME/.linkchecker/failures</strong> for <strong>failures</strong> output.
+<strong>$HOME/.linkchecker/failures</strong> for the <strong>failures</strong> output type.
 Valid file output types are <strong>text</strong>, <strong>html</strong>, <strong>sql</strong>, <strong>csv</strong>,
 <strong>gml</strong>, <strong>dot</strong>, <strong>xml</strong>, <strong>none</strong> or <strong>failures</strong>. Default is no
 file output. The various output types are documented below. Note
 that you can suppress all console output with <strong>output=none</strong>.
 Command line option: <a class="reference internal" href="linkchecker.html#cmdoption-F"><code class="xref std std-option docutils literal notranslate"><span class="pre">--file-output</span></code></a></p>
 </dd>
-<dt><strong>log=</strong><em>TYPE</em>[<strong>/</strong><em>ENCODING</em>]</dt><dd><p>Specify output type as <strong>text</strong>, <strong>html</strong>, <strong>sql</strong>, <strong>csv</strong>,
+<dt><strong>log=</strong><em>TYPE</em>[<strong>/</strong><em>ENCODING</em>]</dt><dd><p>Specify the console output type as <strong>text</strong>, <strong>html</strong>, <strong>sql</strong>, <strong>csv</strong>,
 <strong>gml</strong>, <strong>dot</strong>, <strong>xml</strong>, <strong>none</strong> or <strong>failures</strong>. Default type
 is <strong>text</strong>. The various output types are documented below.
 The <em>ENCODING</em> specifies the output encoding, the default is that of
 your locale. Valid encodings are listed at
 <a class="reference external" href="https://docs.python.org/library/codecs.html#standard-encodings">https://docs.python.org/library/codecs.html#standard-encodings</a>.
 Command line option: <a class="reference internal" href="linkchecker.html#cmdoption-o"><code class="xref std std-option docutils literal notranslate"><span class="pre">--output</span></code></a></p>
-</dd>
-<dt><strong>quiet=</strong>[<strong>0</strong>|<strong>1</strong>]</dt><dd><p>If set, operate quiet. An alias for <strong>log=none</strong>. This is only
-useful with <strong>fileoutput</strong>.
-Command line option: <a class="reference internal" href="linkchecker.html#cmdoption-0"><code class="xref std std-option docutils literal notranslate"><span class="pre">--verbose</span></code></a></p>
-</dd>
-<dt><strong>status=</strong>[<strong>0</strong>|<strong>1</strong>]</dt><dd><p>Control printing check status messages. Default is 1.
-Command line option: <a class="reference internal" href="linkchecker.html#cmdoption-no-status"><code class="xref std std-option docutils literal notranslate"><span class="pre">--no-status</span></code></a></p>
 </dd>
 <dt><strong>verbose=</strong>[<strong>0</strong>|<strong>1</strong>]</dt><dd><p>If set log all checked URLs once. Default is to log only errors and
 warnings.
@@ -526,6 +530,39 @@ Command line option: <a class="reference internal" href="linkchecker.html#cmdopt
 </dd>
 </dl>
 </section>
+<section id="progress-updates">
+<h4>Progress updates<a class="headerlink" href="#progress-updates" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt><strong>status=</strong>[<strong>0</strong>|<strong>1</strong>]</dt><dd><p>Control printing URL checker status messages. Default is 1.
+Command line option: <a class="reference internal" href="linkchecker.html#cmdoption-no-status"><code class="xref std std-option docutils literal notranslate"><span class="pre">--no-status</span></code></a></p>
+</dd>
+</dl>
+</section>
+<section id="application">
+<h4>Application<a class="headerlink" href="#application" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt><strong>debug=</strong><em>STRING</em>[<strong>,</strong><em>STRING</em>…]</dt><dd><p>Print debugging output for the given modules. Available debug
+modules are <strong>cmdline</strong>, <strong>checking</strong>, <strong>cache</strong>, <strong>dns</strong>,
+<strong>thread</strong>, <strong>plugins</strong> and <strong>all</strong>. Specifying <strong>all</strong> is an alias
+for specifying all available loggers.
+Command line option: <a class="reference internal" href="linkchecker.html#cmdoption-D"><code class="xref std std-option docutils literal notranslate"><span class="pre">--debug</span></code></a></p>
+</dd>
+</dl>
+</section>
+<section id="quiet">
+<h4>Quiet<a class="headerlink" href="#quiet" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt><strong>quiet=</strong>[<strong>0</strong>|<strong>1</strong>]</dt><dd><p>If set, operate quiet. An alias for <strong>log=none</strong> that also hides
+application information messages.
+This is only useful with <strong>fileoutput</strong>, else no results will be output.
+Command line option: <a class="reference internal" href="linkchecker.html#cmdoption-q"><code class="xref std std-option docutils literal notranslate"><span class="pre">--quiet</span></code></a></p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+<section id="output-types">
+<h2>OUTPUT TYPES<a class="headerlink" href="#output-types" title="Permalink to this headline"></a></h2>
 <section id="text">
 <h3>text<a class="headerlink" href="#text" title="Permalink to this headline"></a></h3>
 <dl class="simple">
@@ -539,7 +576,7 @@ Command line option: none</p>
 </dd>
 <dt><strong>encoding=</strong><em>STRING</em></dt><dd><p>Valid encodings are listed in
 <a class="reference external" href="https://docs.python.org/library/codecs.html#standard-encodings">https://docs.python.org/library/codecs.html#standard-encodings</a>.
-Default encoding is <strong>iso-8859-15</strong>.</p>
+Default encoding is the system default locale encoding.</p>
 </dd>
 <dt><em>color*</em></dt><dd><p>Color settings for the various log parts, syntax is <em>color</em> or
 <em>type</em><strong>;</strong><em>color</em>. The <em>type</em> can be <strong>bold</strong>, <strong>light</strong>,
@@ -604,7 +641,7 @@ Command line option: none</p>
 </dd>
 <dt><strong>encoding=</strong><em>STRING</em></dt><dd><p>See <a class="reference internal" href="#text"><span class="std std-ref">[text]</span></a> section above.</p>
 </dd>
-<dt><strong>separator=</strong><em>CHAR</em></dt><dd><p>Set CSV separator. Default is a comma (<strong>,</strong>).</p>
+<dt><strong>separator=</strong><em>CHAR</em></dt><dd><p>Set CSV separator. Default is a semicolon (<strong>;</strong>).</p>
 </dd>
 <dt><strong>quotechar=</strong><em>CHAR</em></dt><dd><p>Set CSV quote character. Default is a double quote (<strong>”</strong>).</p>
 </dd>

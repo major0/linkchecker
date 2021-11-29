@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.configuration.confparse &mdash; LinkChecker 0.0.post1+g995dc9c documentation</title>
+  <title>linkcheck.configuration.confparse &mdash; LinkChecker 0.0.post1+ga78c78a documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -30,7 +30,7 @@
             <img src="../../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.0.post1+g995dc9c
+                0.0.post1+ga78c78a
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -88,7 +88,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../man/linkchecker.html#examples">EXAMPLES</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../man/linkchecker.html#options">OPTIONS</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../man/linkchecker.html#general-options">General options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../man/linkchecker.html#output-options">Output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../man/linkchecker.html#output-options">Output options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../man/linkchecker.html#url-checking-results">URL checking results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../man/linkchecker.html#progress-updates">Progress updates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../man/linkchecker.html#application">Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../man/linkchecker.html#quiet">Quiet</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../../../man/linkchecker.html#checking-options">Checking options</a></li>
 </ul>
 </li>
@@ -114,7 +120,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../man/linkcheckerrc.html#checking">checking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../man/linkcheckerrc.html#filtering">filtering</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../man/linkcheckerrc.html#authentication">authentication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../man/linkcheckerrc.html#output">output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../man/linkcheckerrc.html#output">output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../man/linkcheckerrc.html#url-checking-results">URL checking results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../man/linkcheckerrc.html#progress-updates">Progress updates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../man/linkcheckerrc.html#application">Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../man/linkcheckerrc.html#quiet">Quiet</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../man/linkcheckerrc.html#output-types">OUTPUT TYPES</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../man/linkcheckerrc.html#text">text</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../man/linkcheckerrc.html#gml">gml</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../man/linkcheckerrc.html#dot">dot</a></li>
@@ -462,6 +477,7 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">getboolean</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="s2">&quot;quiet&quot;</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;quiet&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">logconf</span><span class="o">.</span><span class="n">reset_loglevel</span><span class="p">()</span>  <span class="c1"># if debug will be overwritten next</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_option</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="s2">&quot;debug&quot;</span><span class="p">):</span>
             <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="s2">&quot;debug&quot;</span><span class="p">)</span>
             <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)]</span>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkchecker &mdash; LinkChecker 0.0.post1+g995dc9c documentation</title>
+  <title>linkchecker &mdash; LinkChecker 0.0.post1+ga78c78a documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.0.post1+g995dc9c
+                0.0.post1+ga78c78a
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -91,7 +91,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#examples">EXAMPLES</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#options">OPTIONS</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#general-options">General options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#output-options">Output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output-options">Output options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#url-checking-results">URL checking results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#progress-updates">Progress updates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application">Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quiet">Quiet</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#checking-options">Checking options</a></li>
 </ul>
 </li>
@@ -117,7 +123,16 @@
 <li class="toctree-l3"><a class="reference internal" href="linkcheckerrc.html#checking">checking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheckerrc.html#filtering">filtering</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheckerrc.html#authentication">authentication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="linkcheckerrc.html#output">output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkcheckerrc.html#output">output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="linkcheckerrc.html#url-checking-results">URL checking results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linkcheckerrc.html#progress-updates">Progress updates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linkcheckerrc.html#application">Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linkcheckerrc.html#quiet">Quiet</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linkcheckerrc.html#output-types">OUTPUT TYPES</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="linkcheckerrc.html#text">text</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheckerrc.html#gml">gml</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheckerrc.html#dot">dot</a></li>
@@ -432,22 +447,13 @@ threads is 10. To disable threading specify a non-positive number.</p>
 </section>
 <section id="output-options">
 <h3>Output options<a class="headerlink" href="#output-options" title="Permalink to this headline"></a></h3>
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-D">
-<span id="cmdoption-d"></span><span id="cmdoption-debug"></span><span class="sig-name descname"><span class="pre">-D</span></span><span class="sig-prename descclassname"> <span class="pre">STRING</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--debug</span></span><span class="sig-prename descclassname"><span class="pre">=STRING</span></span><a class="headerlink" href="#cmdoption-D" title="Permalink to this definition"></a></dt>
-<dd><p>Print debugging output for the given logger. Available loggers are
-cmdline, checking, cache, dns, plugin and
-all. Specifying all is an alias for specifying all available
-loggers. The option can be given multiple times to debug with more
-than one logger. For accurate results, threading will be disabled
-during debug runs.</p>
-</dd></dl>
-
+<section id="url-checking-results">
+<h4>URL checking results<a class="headerlink" href="#url-checking-results" title="Permalink to this headline"></a></h4>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-F">
 <span id="cmdoption-file-output"></span><span class="sig-name descname"><span class="pre">-F</span></span><span class="sig-prename descclassname"> <span class="pre">TYPE[/ENCODING][/FILENAME]</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--file-output</span></span><span class="sig-prename descclassname"><span class="pre">=TYPE[/ENCODING][/FILENAME]</span></span><a class="headerlink" href="#cmdoption-F" title="Permalink to this definition"></a></dt>
 <dd><p>Output to a file linkchecker-out.TYPE,
-$HOME/.linkchecker/failures for failures output, or
+$HOME/.linkchecker/failures for the failures output type, or
 FILENAME if specified. The ENCODING specifies the output
 encoding, the default is that of your locale. Valid encodings are
 listed at
@@ -462,12 +468,6 @@ suppress all console output with the option <a class="reference internal" href="
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-no-status">
-<span class="sig-name descname"><span class="pre">--no-status</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-no-status" title="Permalink to this definition"></a></dt>
-<dd><p>Do not print check status messages.</p>
-</dd></dl>
-
-<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-no-warnings">
 <span class="sig-name descname"><span class="pre">--no-warnings</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-no-warnings" title="Permalink to this definition"></a></dt>
 <dd><p>Don’t log warnings. Default is to log warnings.</p>
@@ -476,20 +476,12 @@ suppress all console output with the option <a class="reference internal" href="
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-o">
 <span id="cmdoption-output"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"> <span class="pre">TYPE[/ENCODING]</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output</span></span><span class="sig-prename descclassname"><span class="pre">=TYPE[/ENCODING]</span></span><a class="headerlink" href="#cmdoption-o" title="Permalink to this definition"></a></dt>
-<dd><p>Specify output type as text, html, sql, csv,
+<dd><p>Specify the console output type as text, html, sql, csv,
 gml, dot, xml, sitemap, none or failures.
-Default type is text. The various output types are documented
-below.
+Default type is text. The various output types are documented below.
 The ENCODING specifies the output encoding, the default is that of
 your locale. Valid encodings are listed at
 <a class="reference external" href="https://docs.python.org/library/codecs.html#standard-encodings">https://docs.python.org/library/codecs.html#standard-encodings</a>.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-q">
-<span id="cmdoption-quiet"></span><span class="sig-name descname"><span class="pre">-q</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--quiet</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-q" title="Permalink to this definition"></a></dt>
-<dd><p>Quiet operation, an alias for <a class="reference internal" href="#cmdoption-o"><code class="xref std std-option docutils literal notranslate"><span class="pre">-o</span></code></a> <em>none</em>. This is only useful with
-<a class="reference internal" href="#cmdoption-F"><code class="xref std std-option docutils literal notranslate"><span class="pre">-F</span></code></a>.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -498,19 +490,41 @@ your locale. Valid encodings are listed at
 <dd><p>Log all checked URLs. Default is to log only errors and warnings.</p>
 </dd></dl>
 
+</section>
+<section id="progress-updates">
+<h4>Progress updates<a class="headerlink" href="#progress-updates" title="Permalink to this headline"></a></h4>
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-W">
-<span id="cmdoption-w"></span><span id="cmdoption-warning-regex"></span><span class="sig-name descname"><span class="pre">-W</span></span><span class="sig-prename descclassname"> <span class="pre">REGEX</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--warning-regex</span></span><span class="sig-prename descclassname"><span class="pre">=REGEX</span></span><a class="headerlink" href="#cmdoption-W" title="Permalink to this definition"></a></dt>
-<dd><p>Define a regular expression which prints a warning if it matches any
-content of the checked link. This applies only to valid pages, so we
-can get their content.
-Use this to check for pages that contain some form of error, for
-example “This page has moved” or “Oracle Application error”.
-Note that multiple values can be combined in the regular expression,
-for example “(This page has moved|Oracle Application error)”.
-See section <a class="reference internal" href="#regular-expressions">REGULAR EXPRESSIONS</a> for more info.</p>
+<dt class="sig sig-object std" id="cmdoption-no-status">
+<span class="sig-name descname"><span class="pre">--no-status</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-no-status" title="Permalink to this definition"></a></dt>
+<dd><p>Do not print URL check status messages.</p>
 </dd></dl>
 
+</section>
+<section id="application">
+<h4>Application<a class="headerlink" href="#application" title="Permalink to this headline"></a></h4>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-D">
+<span id="cmdoption-d"></span><span id="cmdoption-debug"></span><span class="sig-name descname"><span class="pre">-D</span></span><span class="sig-prename descclassname"> <span class="pre">STRING</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--debug</span></span><span class="sig-prename descclassname"><span class="pre">=STRING</span></span><a class="headerlink" href="#cmdoption-D" title="Permalink to this definition"></a></dt>
+<dd><p>Print debugging output for the given logger. Available loggers are
+cmdline, checking, cache, dns, plugin and
+all. Specifying all is an alias for specifying all available
+loggers. The option can be given multiple times to debug with more
+than one logger. For accurate results, threading will be disabled
+during debug runs.</p>
+</dd></dl>
+
+</section>
+<section id="quiet">
+<h4>Quiet<a class="headerlink" href="#quiet" title="Permalink to this headline"></a></h4>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-q">
+<span id="cmdoption-quiet"></span><span class="sig-name descname"><span class="pre">-q</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--quiet</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-q" title="Permalink to this definition"></a></dt>
+<dd><p>Quiet operation, an alias for <a class="reference internal" href="#cmdoption-o"><code class="xref std std-option docutils literal notranslate"><span class="pre">-o</span></code></a> <em>none</em> that also hides
+application information messages.
+This is only useful with <a class="reference internal" href="#cmdoption-F"><code class="xref std std-option docutils literal notranslate"><span class="pre">-F</span></code></a>, else no results will be output.</p>
+</dd></dl>
+
+</section>
 </section>
 <section id="checking-options">
 <h3>Checking options<a class="headerlink" href="#checking-options" title="Permalink to this headline"></a></h3>
