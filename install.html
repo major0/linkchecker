@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; LinkChecker 0.0.post1+ga4d2d49 documentation</title>
+  <title>Installation &mdash; LinkChecker 0.0.post1+g702bf36 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.0.post1+ga4d2d49
+                0.0.post1+g702bf36
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -348,6 +348,16 @@ also read the upgrading documentation stored in <a class="reference internal" hr
 <p>When installing from source, for application translations to be installed
 <a class="reference external" href="https://pypi.org/project/polib/">polib</a> needs to be installed before LinkChecker. After LinkChecker installation
 <a class="reference external" href="https://pypi.org/project/polib/">polib</a> can be removed.</p>
+<p>There are several steps to resolve problems with detecting the character
+encoding of checked HTML pages:
+first ensure the web server, if used, is not returning an incorrect charset in
+the Content-Type header; second, if possible add a meta element to the HTML
+page with the correct charset; finally, install <a class="reference external" href="https://pypi.org/project/cchardet/">cchardet</a> - Beautiful Soup has
+its own encoding detector but will use in order of preference <a class="reference external" href="https://pypi.org/project/cchardet/">cchardet</a> or
+<a class="reference external" href="https://pypi.org/project/chardet/">chardet</a>. You might find that one of the other three detectors works better for
+your pages. There may already be a system copy of e.g. chardet installed;
+installing LinkChecker in a Python <a class="reference external" href="https://docs.python.org/3/library/venv.html#creating-virtual-environments">venv</a> gives control over which packages are
+used.</p>
 <section id="setup-with-pip">
 <h2>Setup with pip<a class="headerlink" href="#setup-with-pip" title="Permalink to this headline"></a></h2>
 <p><a class="reference external" href="https://pypi.org/project/pip/">pip</a> can be used to install LinkChecker on the local system.</p>
