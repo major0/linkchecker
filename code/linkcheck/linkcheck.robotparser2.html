@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.robotparser2 &mdash; LinkChecker 10.0.1.post83+g2e9f0874 documentation</title>
+  <title>linkcheck.robotparser2 &mdash; LinkChecker 10.0.1.post91+g7f175c13 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post83+g2e9f0874
+                10.0.1.post91+g7f175c13
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -219,7 +219,6 @@
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.itmsservicesurl.html">linkcheck.checker.itmsservicesurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.mailtourl.html">linkcheck.checker.mailtourl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.nntpurl.html">linkcheck.checker.nntpurl</a></li>
-<li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.proxysupport.html">linkcheck.checker.proxysupport</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.telneturl.html">linkcheck.checker.telneturl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.unknownurl.html">linkcheck.checker.unknownurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.urlbase.html">linkcheck.checker.urlbase</a></li>
@@ -358,7 +357,7 @@
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Entry</span></code>()</p></td>
 <td><p>An entry has one or more user-agents and zero or more rulelines.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.robotparser2.RobotFileParser" title="linkcheck.robotparser2.RobotFileParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotFileParser</span></code></a>([url, session, proxies, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.robotparser2.RobotFileParser" title="linkcheck.robotparser2.RobotFileParser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotFileParser</span></code></a>(session[, url, auth, timeout])</p></td>
 <td><p>This class provides a set of methods to read, parse and answer questions about a single robots.txt file.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RuleLine</span></code>(path, allowance)</p></td>
@@ -368,7 +367,7 @@
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="linkcheck.robotparser2.RobotFileParser">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linkcheck.robotparser2.</span></span><span class="sig-name descname"><span class="pre">RobotFileParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proxies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/robotparser2.html#RobotFileParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.robotparser2.RobotFileParser" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linkcheck.robotparser2.</span></span><span class="sig-name descname"><span class="pre">RobotFileParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/robotparser2.html#RobotFileParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.robotparser2.RobotFileParser" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This class provides a set of methods to read, parse and answer
 questions about a single robots.txt file.</p>

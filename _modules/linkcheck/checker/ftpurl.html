@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.checker.ftpurl &mdash; LinkChecker 10.0.1.post83+g2e9f0874 documentation</title>
+  <title>linkcheck.checker.ftpurl &mdash; LinkChecker 10.0.1.post91+g7f175c13 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -30,7 +30,7 @@
             <img src="../../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post83+g2e9f0874
+                10.0.1.post91+g7f175c13
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -216,7 +216,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.itmsservicesurl.html">linkcheck.checker.itmsservicesurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.mailtourl.html">linkcheck.checker.mailtourl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.nntpurl.html">linkcheck.checker.nntpurl</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.proxysupport.html">linkcheck.checker.proxysupport</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.telneturl.html">linkcheck.checker.telneturl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.unknownurl.html">linkcheck.checker.unknownurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.urlbase.html">linkcheck.checker.urlbase</a></li>
@@ -364,11 +363,11 @@
 <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
 
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">LOG_CHECK</span><span class="p">,</span> <span class="n">LinkCheckerError</span><span class="p">,</span> <span class="n">mimeutil</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">proxysupport</span><span class="p">,</span> <span class="n">httpurl</span><span class="p">,</span> <span class="n">internpaturl</span><span class="p">,</span> <span class="n">get_index_html</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">internpaturl</span><span class="p">,</span> <span class="n">get_index_html</span>
 <span class="kn">from</span> <span class="nn">.const</span> <span class="kn">import</span> <span class="n">WARN_FTP_MISSING_SLASH</span>
 
 
-<div class="viewcode-block" id="FtpUrl"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.ftpurl.html#linkcheck.checker.ftpurl.FtpUrl">[docs]</a><span class="k">class</span> <span class="nc">FtpUrl</span><span class="p">(</span><span class="n">internpaturl</span><span class="o">.</span><span class="n">InternPatternUrl</span><span class="p">,</span> <span class="n">proxysupport</span><span class="o">.</span><span class="n">ProxySupport</span><span class="p">):</span>
+<div class="viewcode-block" id="FtpUrl"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.ftpurl.html#linkcheck.checker.ftpurl.FtpUrl">[docs]</a><span class="k">class</span> <span class="nc">FtpUrl</span><span class="p">(</span><span class="n">internpaturl</span><span class="o">.</span><span class="n">InternPatternUrl</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Url link with ftp scheme.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -386,25 +385,8 @@
 
 <div class="viewcode-block" id="FtpUrl.check_connection"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.ftpurl.html#linkcheck.checker.ftpurl.FtpUrl.check_connection">[docs]</a>    <span class="k">def</span> <span class="nf">check_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        In case of proxy, delegate to HttpUrl. Else check in this</span>
-<span class="sd">        order: login, changing directory, list the file.</span>
+<span class="sd">        Check in this order: login, changing directory, list the file.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># proxy support (we support only http)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_proxy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;proxy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scheme</span><span class="p">))</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="p">:</span>
-            <span class="c1"># using a (HTTP) proxy</span>
-            <span class="n">http</span> <span class="o">=</span> <span class="n">httpurl</span><span class="o">.</span><span class="n">HttpUrl</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">recursion_level</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="p">,</span>
-                <span class="n">parent_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parent_url</span><span class="p">,</span>
-                <span class="n">base_ref</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">base_ref</span><span class="p">,</span>
-                <span class="n">line</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">line</span><span class="p">,</span>
-                <span class="n">column</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">column</span><span class="p">,</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-            <span class="p">)</span>
-            <span class="n">http</span><span class="o">.</span><span class="n">build_url</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">negotiate_encoding</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.configuration &mdash; LinkChecker 10.0.1.post83+g2e9f0874 documentation</title>
+  <title>linkcheck.configuration &mdash; LinkChecker 10.0.1.post91+g7f175c13 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post83+g2e9f0874
+                10.0.1.post91+g7f175c13
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -219,7 +219,6 @@
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.itmsservicesurl.html">linkcheck.checker.itmsservicesurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.mailtourl.html">linkcheck.checker.mailtourl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.nntpurl.html">linkcheck.checker.nntpurl</a></li>
-<li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.proxysupport.html">linkcheck.checker.proxysupport</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.telneturl.html">linkcheck.checker.telneturl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.unknownurl.html">linkcheck.checker.unknownurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.checker.urlbase.html">linkcheck.checker.urlbase</a></li>
@@ -353,26 +352,8 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.configuration.add_kde_proxy" title="linkcheck.configuration.add_kde_proxy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_kde_proxy</span></code></a>(key, value, data)</p></td>
-<td><p>Add a proxy value to data dictionary after sanity checks.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.configuration.add_kde_setting" title="linkcheck.configuration.add_kde_setting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_kde_setting</span></code></a>(key, value, data)</p></td>
-<td><p>Add a KDE proxy setting value to data dictionary.</p></td>
-</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.configuration.get_certifi_file" title="linkcheck.configuration.get_certifi_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_certifi_file</span></code></a>()</p></td>
 <td><p>Get the SSL certifications installed by the certifi package.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.configuration.get_gnome_proxy" title="linkcheck.configuration.get_gnome_proxy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_gnome_proxy</span></code></a>([protocol])</p></td>
-<td><p>Return host:port for a GNOME proxy if found, else None.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.configuration.get_kde_config_dir" title="linkcheck.configuration.get_kde_config_dir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_kde_config_dir</span></code></a>()</p></td>
-<td><p>Return KDE configuration directory or None if not found.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.configuration.get_kde_ftp_proxy" title="linkcheck.configuration.get_kde_ftp_proxy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_kde_ftp_proxy</span></code></a>()</p></td>
-<td><p>Return host:port for KDE HTTP proxy if found, else None.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.configuration.get_kde_http_proxy" title="linkcheck.configuration.get_kde_http_proxy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_kde_http_proxy</span></code></a>()</p></td>
-<td><p>Return host:port for KDE HTTP proxy if found, else None.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.configuration.get_modules_info" title="linkcheck.configuration.get_modules_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_modules_info</span></code></a>()</p></td>
 <td><p>Return unicode string with detected module info.</p></td>
@@ -401,16 +382,7 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.configuration.normpath" title="linkcheck.configuration.normpath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normpath</span></code></a>(path)</p></td>
 <td><p>Norm given system path with all available norm or expand functions in os.path.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.configuration.read_kioslaverc" title="linkcheck.configuration.read_kioslaverc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_kioslaverc</span></code></a>()</p></td>
-<td><p>Read kioslaverc into data dictionary.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.configuration.resolve_indirect" title="linkcheck.configuration.resolve_indirect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resolve_indirect</span></code></a>(data, key[, splithosts])</p></td>
-<td><p>Replace name of environment variable with its value.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.configuration.resolve_kde_settings" title="linkcheck.configuration.resolve_kde_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resolve_kde_settings</span></code></a>(data)</p></td>
-<td><p>Write final proxy configuration values in data dictionary.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.configuration.split_hosts" title="linkcheck.configuration.split_hosts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split_hosts</span></code></a>(value)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.configuration.split_hosts" title="linkcheck.configuration.split_hosts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split_hosts</span></code></a>(value)</p></td>
 <td><p>Split comma-separated host list.</p></td>
 </tr>
 </tbody>
@@ -503,13 +475,6 @@ authentication matches the given URL.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="linkcheck.configuration.Configuration.sanitize_proxies">
-<span class="sig-name descname"><span class="pre">sanitize_proxies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#Configuration.sanitize_proxies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.Configuration.sanitize_proxies" title="Permalink to this definition"></a></dt>
-<dd><p>Try to read additional proxy settings which urllib does not
-support.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="linkcheck.configuration.Configuration.sanitize_ssl">
 <span class="sig-name descname"><span class="pre">sanitize_ssl</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#Configuration.sanitize_ssl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.Configuration.sanitize_ssl" title="Permalink to this definition"></a></dt>
 <dd><p>Use local installed certificate file if available.
@@ -523,18 +488,6 @@ installed certificate file.</p>
 <dd><p>Set the status logger.</p>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.configuration.add_kde_proxy">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">add_kde_proxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#add_kde_proxy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.add_kde_proxy" title="Permalink to this definition"></a></dt>
-<dd><p>Add a proxy value to data dictionary after sanity checks.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.configuration.add_kde_setting">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">add_kde_setting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#add_kde_setting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.add_kde_setting" title="Permalink to this definition"></a></dt>
-<dd><p>Add a KDE proxy setting value to data dictionary.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -553,30 +506,6 @@ installed certificate file.</p>
 the file is not found</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.configuration.get_gnome_proxy">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">get_gnome_proxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protocol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'HTTP'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#get_gnome_proxy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.get_gnome_proxy" title="Permalink to this definition"></a></dt>
-<dd><p>Return host:port for a GNOME proxy if found, else None.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.configuration.get_kde_config_dir">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">get_kde_config_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#get_kde_config_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.get_kde_config_dir" title="Permalink to this definition"></a></dt>
-<dd><p>Return KDE configuration directory or None if not found.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.configuration.get_kde_ftp_proxy">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">get_kde_ftp_proxy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#get_kde_ftp_proxy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.get_kde_ftp_proxy" title="Permalink to this definition"></a></dt>
-<dd><p>Return host:port for KDE HTTP proxy if found, else None.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.configuration.get_kde_http_proxy">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">get_kde_http_proxy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#get_kde_http_proxy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.get_kde_http_proxy" title="Permalink to this definition"></a></dt>
-<dd><p>Return host:port for KDE HTTP proxy if found, else None.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -662,24 +591,6 @@ Returns “~/.linkchecker/” if this folder exists,     “$XDG_DATA_HOME/linkc
 <span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">normpath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#normpath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.normpath" title="Permalink to this definition"></a></dt>
 <dd><p>Norm given system path with all available norm or expand functions
 in os.path.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.configuration.read_kioslaverc">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">read_kioslaverc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#read_kioslaverc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.read_kioslaverc" title="Permalink to this definition"></a></dt>
-<dd><p>Read kioslaverc into data dictionary.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.configuration.resolve_indirect">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">resolve_indirect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">splithosts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#resolve_indirect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.resolve_indirect" title="Permalink to this definition"></a></dt>
-<dd><p>Replace name of environment variable with its value.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.configuration.resolve_kde_settings">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">resolve_kde_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#resolve_kde_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.resolve_kde_settings" title="Permalink to this definition"></a></dt>
-<dd><p>Write final proxy configuration values in data dictionary.</p>
 </dd></dl>
 
 <dl class="py function">

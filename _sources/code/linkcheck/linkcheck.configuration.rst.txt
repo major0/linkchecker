@@ -13,13 +13,7 @@ linkcheck.configuration
 
    .. autosummary::
    
-      add_kde_proxy
-      add_kde_setting
       get_certifi_file
-      get_gnome_proxy
-      get_kde_config_dir
-      get_kde_ftp_proxy
-      get_kde_http_proxy
       get_modules_info
       get_plugin_folders
       get_share_dir
@@ -29,9 +23,6 @@ linkcheck.configuration
       get_user_data
       make_userdir
       normpath
-      read_kioslaverc
-      resolve_indirect
-      resolve_kde_settings
       split_hosts
    
    

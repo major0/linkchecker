@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Upgrading &mdash; LinkChecker 10.0.1.post83+g2e9f0874 documentation</title>
+  <title>Upgrading &mdash; LinkChecker 10.0.1.post91+g7f175c13 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post83+g2e9f0874
+                10.0.1.post91+g7f175c13
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -219,7 +219,6 @@
 <li class="toctree-l4"><a class="reference internal" href="code/linkcheck/linkcheck.checker.itmsservicesurl.html">linkcheck.checker.itmsservicesurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="code/linkcheck/linkcheck.checker.mailtourl.html">linkcheck.checker.mailtourl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="code/linkcheck/linkcheck.checker.nntpurl.html">linkcheck.checker.nntpurl</a></li>
-<li class="toctree-l4"><a class="reference internal" href="code/linkcheck/linkcheck.checker.proxysupport.html">linkcheck.checker.proxysupport</a></li>
 <li class="toctree-l4"><a class="reference internal" href="code/linkcheck/linkcheck.checker.telneturl.html">linkcheck.checker.telneturl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="code/linkcheck/linkcheck.checker.unknownurl.html">linkcheck.checker.unknownurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="code/linkcheck/linkcheck.checker.urlbase.html">linkcheck.checker.urlbase</a></li>
@@ -347,6 +346,9 @@
 <h2>Migrating from 10.0 to 10.x<a class="headerlink" href="#migrating-from-10-0-to-10-x" title="Permalink to this headline"></a></h2>
 <p>If installing from source and application translations are needed the Python
 polib package is required to be installed before LinkChecker is installed.</p>
+<p>The environment variable ftp_proxy is no longer supported. GNOME and KDE proxy
+settings are not read; KDE proxy users especially may need to set
+the http_proxy environment variable themselves.</p>
 </section>
 <section id="migrating-from-9-x-to-10-0">
 <h2>Migrating from 9.x to 10.0<a class="headerlink" href="#migrating-from-9-x-to-10-0" title="Permalink to this headline"></a></h2>

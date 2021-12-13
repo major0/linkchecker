@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.configuration &mdash; LinkChecker 10.0.1.post83+g2e9f0874 documentation</title>
+  <title>linkcheck.configuration &mdash; LinkChecker 10.0.1.post91+g7f175c13 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -30,7 +30,7 @@
             <img src="../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post83+g2e9f0874
+                10.0.1.post91+g7f175c13
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -216,7 +216,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../code/linkcheck/linkcheck.checker.itmsservicesurl.html">linkcheck.checker.itmsservicesurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../code/linkcheck/linkcheck.checker.mailtourl.html">linkcheck.checker.mailtourl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../code/linkcheck/linkcheck.checker.nntpurl.html">linkcheck.checker.nntpurl</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../code/linkcheck/linkcheck.checker.proxysupport.html">linkcheck.checker.proxysupport</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../code/linkcheck/linkcheck.checker.telneturl.html">linkcheck.checker.telneturl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../code/linkcheck/linkcheck.checker.unknownurl.html">linkcheck.checker.unknownurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../code/linkcheck/linkcheck.checker.urlbase.html">linkcheck.checker.urlbase</a></li>
@@ -359,11 +358,9 @@
 <span class="sd">Store metadata and options.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">urllib.parse</span>
-<span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">socket</span>
 <span class="kn">import</span> <span class="nn">_LinkChecker_configdata</span> <span class="k">as</span> <span class="nn">configdata</span>
@@ -413,7 +410,6 @@
     <span class="p">(</span><span class="s2">&quot;pygeoip&quot;</span><span class="p">,</span> <span class="s2">&quot;GeoIP&quot;</span><span class="p">,</span> <span class="s1">&#39;lib_version&#39;</span><span class="p">),</span>  <span class="c1"># on Windows systems</span>
     <span class="p">(</span><span class="s2">&quot;sqlite3&quot;</span><span class="p">,</span> <span class="s2">&quot;Pysqlite&quot;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">),</span>
     <span class="p">(</span><span class="s2">&quot;sqlite3&quot;</span><span class="p">,</span> <span class="s2">&quot;Sqlite&quot;</span><span class="p">,</span> <span class="s1">&#39;sqlite_version&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;gi&quot;</span><span class="p">,</span> <span class="s2">&quot;PyGObject&quot;</span><span class="p">,</span> <span class="s1">&#39;__version__&#39;</span><span class="p">),</span>
     <span class="p">(</span><span class="s2">&quot;meliae&quot;</span><span class="p">,</span> <span class="s2">&quot;Meliae&quot;</span><span class="p">,</span> <span class="s1">&#39;__version__&#39;</span><span class="p">),</span>
 <span class="p">)</span>
 
@@ -519,7 +515,6 @@
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;maxrequestspersecond&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;maxhttpredirects&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;nntpserver&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;NNTP_SERVER&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;proxy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">getproxies</span><span class="p">()</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;sslverify&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;threads&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;timeout&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">60</span>
@@ -632,7 +627,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">sanitize_logger</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="s1">&#39;loginurl&#39;</span><span class="p">]:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">sanitize_loginurl</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sanitize_proxies</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sanitize_plugins</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sanitize_ssl</span><span class="p">()</span>
         <span class="c1"># set default socket timeout</span>
@@ -665,20 +659,6 @@
         <span class="k">if</span> <span class="n">disable</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s2">&quot;disabling login URL </span><span class="si">%(url)s</span><span class="s2">.&quot;</span><span class="p">)</span> <span class="o">%</span> <span class="p">{</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">})</span>
             <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;loginurl&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
-
-<div class="viewcode-block" id="Configuration.sanitize_proxies"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.Configuration.sanitize_proxies">[docs]</a>    <span class="k">def</span> <span class="nf">sanitize_proxies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Try to read additional proxy settings which urllib does not</span>
-<span class="sd">        support.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s1">&#39;posix&#39;</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="k">if</span> <span class="s2">&quot;http&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;proxy&quot;</span><span class="p">]:</span>
-            <span class="n">http_proxy</span> <span class="o">=</span> <span class="n">get_gnome_proxy</span><span class="p">()</span> <span class="ow">or</span> <span class="n">get_kde_http_proxy</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">http_proxy</span><span class="p">:</span>
-                <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;proxy&quot;</span><span class="p">][</span><span class="s2">&quot;http&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">http_proxy</span>
-        <span class="k">if</span> <span class="s2">&quot;ftp&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;proxy&quot;</span><span class="p">]:</span>
-            <span class="n">ftp_proxy</span> <span class="o">=</span> <span class="n">get_gnome_proxy</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;FTP&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">get_kde_ftp_proxy</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">ftp_proxy</span><span class="p">:</span>
-                <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;proxy&quot;</span><span class="p">][</span><span class="s2">&quot;ftp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ftp_proxy</span></div>
 
 <div class="viewcode-block" id="Configuration.sanitize_plugins"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.Configuration.sanitize_plugins">[docs]</a>    <span class="k">def</span> <span class="nf">sanitize_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Ensure each plugin is configurable.&quot;&quot;&quot;</span>
@@ -781,227 +761,9 @@
     <span class="k">return</span> <span class="n">userconf</span></div>
 
 
-<div class="viewcode-block" id="get_gnome_proxy"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.get_gnome_proxy">[docs]</a><span class="k">def</span> <span class="nf">get_gnome_proxy</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;HTTP&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return host:port for a GNOME proxy if found, else None.&quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">gi</span>
-        <span class="n">gi</span><span class="o">.</span><span class="n">require_version</span><span class="p">(</span><span class="s1">&#39;Gio&#39;</span><span class="p">,</span> <span class="s1">&#39;2.0&#39;</span><span class="p">)</span>
-        <span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">Gio</span>
-    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">None</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">schema_id</span> <span class="o">=</span> <span class="s2">&quot;org.gnome.system.proxy.</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">protocol</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-        <span class="c1"># If the schema is not installed Gio.Settings.new() causes Trace/breakpoint trap</span>
-        <span class="n">source</span> <span class="o">=</span> <span class="n">Gio</span><span class="o">.</span><span class="n">SettingsSchemaSource</span><span class="o">.</span><span class="n">get_default</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="s2">&quot;No GSettings schemas are installed&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="n">schema</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">schema_id</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">schema</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> not installed&quot;</span> <span class="o">%</span> <span class="n">schema_id</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">None</span>
-
-        <span class="n">settings</span> <span class="o">=</span> <span class="n">Gio</span><span class="o">.</span><span class="n">Settings</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">schema_id</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">protocol</span> <span class="o">==</span> <span class="s2">&quot;HTTP&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">settings</span><span class="o">.</span><span class="n">get_boolean</span><span class="p">(</span><span class="s2">&quot;enabled&quot;</span><span class="p">):</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="n">host</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get_string</span><span class="p">(</span><span class="s2">&quot;host&quot;</span><span class="p">)</span>
-        <span class="n">port</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">&quot;port&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">host</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">port</span><span class="p">:</span>
-                <span class="n">port</span> <span class="o">=</span> <span class="mi">8080</span>
-            <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">msg</span><span class="p">:</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="s2">&quot;error getting </span><span class="si">%s</span><span class="s2"> proxy from GNOME: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="n">msg</span><span class="p">))</span>
-    <span class="k">return</span> <span class="kc">None</span></div>
-
-
-<div class="viewcode-block" id="get_kde_http_proxy"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.get_kde_http_proxy">[docs]</a><span class="k">def</span> <span class="nf">get_kde_http_proxy</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Return host:port for KDE HTTP proxy if found, else None.&quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">read_kioslaverc</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http_proxy&quot;</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">msg</span><span class="p">:</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="s2">&quot;error getting HTTP proxy from KDE: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="get_kde_ftp_proxy"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.get_kde_ftp_proxy">[docs]</a><span class="k">def</span> <span class="nf">get_kde_ftp_proxy</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Return host:port for KDE HTTP proxy if found, else None.&quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">read_kioslaverc</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ftp_proxy&quot;</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">msg</span><span class="p">:</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="s2">&quot;error getting FTP proxy from KDE: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span></div>
-
-
-<span class="c1"># The following KDE functions are largely ported and ajusted from</span>
-<span class="c1"># Google Chromium:</span>
-<span class="c1"># http://src.chromium.org/viewvc/chrome/trunk/src/net/proxy/proxy_config_service_linux.cc?revision=HEAD&amp;view=markup</span>
-<span class="c1"># Copyright (c) 2010 The Chromium Authors. All rights reserved.</span>
-<span class="c1">#</span>
-<span class="c1"># Redistribution and use in source and binary forms, with or without</span>
-<span class="c1"># modification, are permitted provided that the following conditions are</span>
-<span class="c1"># met:</span>
-<span class="c1">#</span>
-<span class="c1">#    * Redistributions of source code must retain the above copyright</span>
-<span class="c1"># notice, this list of conditions and the following disclaimer.</span>
-<span class="c1">#    * Redistributions in binary form must reproduce the above</span>
-<span class="c1"># copyright notice, this list of conditions and the following disclaimer</span>
-<span class="c1"># in the documentation and/or other materials provided with the</span>
-<span class="c1"># distribution.</span>
-<span class="c1">#    * Neither the name of Google Inc. nor the names of its</span>
-<span class="c1"># contributors may be used to endorse or promote products derived from</span>
-<span class="c1"># this software without specific prior written permission.</span>
-<span class="c1">#</span>
-<span class="c1"># THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</span>
-<span class="c1"># &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</span>
-<span class="c1"># LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</span>
-<span class="c1"># A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</span>
-<span class="c1"># OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</span>
-<span class="c1"># SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</span>
-<span class="c1"># LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</span>
-<span class="c1"># DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</span>
-<span class="c1"># THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span>
-<span class="c1"># (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</span>
-<span class="c1"># OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
-
-
-<div class="viewcode-block" id="get_kde_config_dir"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.get_kde_config_dir">[docs]</a><span class="k">def</span> <span class="nf">get_kde_config_dir</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Return KDE configuration directory or None if not found.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;KDEHOME&quot;</span><span class="p">):</span>
-        <span class="n">home</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;KDEHOME&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">home</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;HOME&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">home</span><span class="p">:</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="s2">&quot;KDEHOME and HOME not set&quot;</span><span class="p">)</span>
-        <span class="k">return</span>
-    <span class="n">kde_config_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">home</span><span class="p">,</span> <span class="s2">&quot;.config&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">kde_config_dir</span><span class="p">):</span>
-        <span class="n">kde_config_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">home</span><span class="p">,</span> <span class="s2">&quot;.kde4&quot;</span><span class="p">,</span> <span class="s2">&quot;share&quot;</span><span class="p">,</span> <span class="s2">&quot;config&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">kde_config_dir</span><span class="p">):</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> does not exist&quot;</span> <span class="o">%</span> <span class="n">kde_config_dir</span><span class="p">)</span>
-            <span class="k">return</span>
-    <span class="k">return</span> <span class="n">kde_config_dir</span></div>
-
-
-<span class="n">loc_ro</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\[.*\]$&quot;</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="read_kioslaverc"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.read_kioslaverc">[docs]</a><span class="nd">@lru_cache</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">read_kioslaverc</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Read kioslaverc into data dictionary.&quot;&quot;&quot;</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">kde_config_dir</span> <span class="o">=</span> <span class="n">get_kde_config_dir</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">kde_config_dir</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">data</span>
-    <span class="n">in_proxy_settings</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">kde_config_dir</span><span class="p">,</span> <span class="s2">&quot;kioslaverc&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> does not exist&quot;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">data</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
-        <span class="c1"># First read all lines into dictionary since they can occur</span>
-        <span class="c1"># in any order.</span>
-        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fd</span><span class="p">:</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">):</span>
-                <span class="n">in_proxy_settings</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;[Proxy Settings]&quot;</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">in_proxy_settings</span><span class="p">:</span>
-                <span class="k">if</span> <span class="s1">&#39;=&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-                    <span class="k">continue</span>
-                <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-                <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-                <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="p">:</span>
-                    <span class="k">continue</span>
-                <span class="c1"># trim optional localization</span>
-                <span class="n">key</span> <span class="o">=</span> <span class="n">loc_ro</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="p">:</span>
-                    <span class="k">continue</span>
-                <span class="n">add_kde_setting</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-    <span class="n">resolve_kde_settings</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">data</span></div>
-
-
-<div class="viewcode-block" id="add_kde_proxy"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.add_kde_proxy">[docs]</a><span class="k">def</span> <span class="nf">add_kde_proxy</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Add a proxy value to data dictionary after sanity checks.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="ow">or</span> <span class="n">value</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;//:&quot;</span><span class="p">:</span>
-        <span class="k">return</span>
-    <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
-
-
-<div class="viewcode-block" id="add_kde_setting"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.add_kde_setting">[docs]</a><span class="k">def</span> <span class="nf">add_kde_setting</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Add a KDE proxy setting value to data dictionary.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;ProxyType&quot;</span><span class="p">:</span>
-        <span class="n">mode</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">int_value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">int_value</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;manual&quot;</span>
-        <span class="k">elif</span> <span class="n">int_value</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="c1"># PAC URL</span>
-            <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;pac&quot;</span>
-        <span class="k">elif</span> <span class="n">int_value</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="c1"># WPAD.</span>
-            <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;wpad&quot;</span>
-        <span class="k">elif</span> <span class="n">int_value</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-            <span class="c1"># Indirect manual via environment variables.</span>
-            <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;indirect&quot;</span>
-        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mode</span>
-    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;Proxy Config Script&quot;</span><span class="p">:</span>
-        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;autoconfig_url&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;httpProxy&quot;</span><span class="p">:</span>
-        <span class="n">add_kde_proxy</span><span class="p">(</span><span class="s2">&quot;http_proxy&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;httpsProxy&quot;</span><span class="p">:</span>
-        <span class="n">add_kde_proxy</span><span class="p">(</span><span class="s2">&quot;https_proxy&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;ftpProxy&quot;</span><span class="p">:</span>
-        <span class="n">add_kde_proxy</span><span class="p">(</span><span class="s2">&quot;ftp_proxy&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;ReversedException&quot;</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span><span class="p">:</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">elif</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;false&quot;</span><span class="p">:</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
-        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;reversed_bypass&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;NoProxyFor&quot;</span><span class="p">:</span>
-        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;ignore_hosts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">split_hosts</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;AuthMode&quot;</span><span class="p">:</span>
-        <span class="n">mode</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
-        <span class="c1"># XXX todo</span>
-
-
 <div class="viewcode-block" id="split_hosts"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.split_hosts">[docs]</a><span class="k">def</span> <span class="nf">split_hosts</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Split comma-separated host list.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">host</span> <span class="k">for</span> <span class="n">host</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">host</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="resolve_indirect"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.resolve_indirect">[docs]</a><span class="k">def</span> <span class="nf">resolve_indirect</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">splithosts</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Replace name of environment variable with its value.&quot;&quot;&quot;</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-    <span class="n">env_value</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">env_value</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">splithosts</span><span class="p">:</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">split_hosts</span><span class="p">(</span><span class="n">env_value</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">env_value</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="resolve_kde_settings"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.resolve_kde_settings">[docs]</a><span class="k">def</span> <span class="nf">resolve_kde_settings</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Write final proxy configuration values in data dictionary.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="s2">&quot;mode&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-        <span class="k">return</span>
-    <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;mode&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;indirect&quot;</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;http_proxy&quot;</span><span class="p">,</span> <span class="s2">&quot;https_proxy&quot;</span><span class="p">,</span> <span class="s2">&quot;ftp_proxy&quot;</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-                <span class="n">resolve_indirect</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-        <span class="k">if</span> <span class="s2">&quot;ignore_hosts&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">resolve_indirect</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;ignore_hosts&quot;</span><span class="p">,</span> <span class="n">splithosts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;mode&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;manual&quot;</span><span class="p">:</span>
-        <span class="c1"># unsupported config</span>
-        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;http_proxy&quot;</span><span class="p">,</span> <span class="s2">&quot;https_proxy&quot;</span><span class="p">,</span> <span class="s2">&quot;ftp_proxy&quot;</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-                <span class="k">del</span> <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
 </pre></div>
 
            </div>

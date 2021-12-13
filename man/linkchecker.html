@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkchecker &mdash; LinkChecker 10.0.1.post83+g2e9f0874 documentation</title>
+  <title>linkchecker &mdash; LinkChecker 10.0.1.post91+g7f175c13 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,7 +33,7 @@
             <img src="../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post83+g2e9f0874
+                10.0.1.post91+g7f175c13
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -219,7 +219,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../code/linkcheck/linkcheck.checker.itmsservicesurl.html">linkcheck.checker.itmsservicesurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../code/linkcheck/linkcheck.checker.mailtourl.html">linkcheck.checker.mailtourl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../code/linkcheck/linkcheck.checker.nntpurl.html">linkcheck.checker.nntpurl</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../code/linkcheck/linkcheck.checker.proxysupport.html">linkcheck.checker.proxysupport</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../code/linkcheck/linkcheck.checker.telneturl.html">linkcheck.checker.telneturl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../code/linkcheck/linkcheck.checker.unknownurl.html">linkcheck.checker.unknownurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../code/linkcheck/linkcheck.checker.urlbase.html">linkcheck.checker.urlbase</a></li>
@@ -691,15 +690,17 @@ and one to all URLs starting with <strong>https://example.org/</strong>:</p>
 </section>
 <section id="proxy-support">
 <h2>PROXY SUPPORT<a class="headerlink" href="#proxy-support" title="Permalink to this headline"></a></h2>
-<p>To use a proxy on Unix or Windows set the <span class="target" id="index-1"></span><a class="reference internal" href="#envvar-http_proxy"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">http_proxy</span></code></a>, <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">https_proxy</span></code> or
-<span class="target" id="index-3"></span><a class="reference internal" href="#envvar-ftp_proxy"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ftp_proxy</span></code></a> environment variables to the proxy URL. The URL should be of
-the form
+<p>To use a proxy on Unix or Windows set the <span class="target" id="index-1"></span><a class="reference internal" href="#envvar-http_proxy"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">http_proxy</span></code></a> or
+<span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">https_proxy</span></code> environment variables to the proxy URL. The URL should be
+of the form
 <strong>http://</strong>[<em>user</em><strong>:</strong><em>pass</em><strong>&#64;</strong>]<em>host</em>[<strong>:</strong><em>port</em>].
 LinkChecker also detects manual proxy settings of Internet Explorer
-under Windows systems, and GNOME or KDE on Linux systems. On a Mac use
+under Windows systems. On a Mac use
 the Internet Config to select a proxy.
-You can also set a comma-separated domain list in the <span class="target" id="index-4"></span><a class="reference internal" href="#envvar-no_proxy"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">no_proxy</span></code></a>
-environment variables to ignore any proxy settings for these domains.</p>
+You can also set a comma-separated domain list in the <span class="target" id="index-3"></span><a class="reference internal" href="#envvar-no_proxy"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">no_proxy</span></code></a>
+environment variable to ignore any proxy settings for these domains.
+The <span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">curl_ca_bundle</span></code> environment variable can be used to identify an
+alternative certificate bundle to be used with an HTTPS proxy.</p>
 <p>Setting a HTTP proxy on Unix for example looks like this:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">export</span> <span class="nv">http_proxy</span><span class="o">=</span><span class="s2">&quot;http://proxy.example.com:8080&quot;</span>
 </pre></div>

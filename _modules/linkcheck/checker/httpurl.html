@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.checker.httpurl &mdash; LinkChecker 10.0.1.post83+g2e9f0874 documentation</title>
+  <title>linkcheck.checker.httpurl &mdash; LinkChecker 10.0.1.post91+g7f175c13 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -30,7 +30,7 @@
             <img src="../../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post83+g2e9f0874
+                10.0.1.post91+g7f175c13
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -216,7 +216,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.itmsservicesurl.html">linkcheck.checker.itmsservicesurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.mailtourl.html">linkcheck.checker.mailtourl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.nntpurl.html">linkcheck.checker.nntpurl</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.proxysupport.html">linkcheck.checker.proxysupport</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.telneturl.html">linkcheck.checker.telneturl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.unknownurl.html">linkcheck.checker.unknownurl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../code/linkcheck/linkcheck.checker.urlbase.html">linkcheck.checker.urlbase</a></li>
@@ -383,7 +382,7 @@
     <span class="n">LinkCheckerError</span><span class="p">,</span>
     <span class="n">httputil</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">internpaturl</span><span class="p">,</span> <span class="n">proxysupport</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">internpaturl</span>
 
 <span class="c1"># import warnings</span>
 <span class="kn">from</span> <span class="nn">.const</span> <span class="kn">import</span> <span class="n">WARN_HTTP_EMPTY_CONTENT</span><span class="p">,</span> <span class="n">WARN_URL_RATE_LIMITED</span>
@@ -395,7 +394,7 @@
 <span class="n">nofollow_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\bnofollow\b&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="HttpUrl"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.httpurl.html#linkcheck.checker.httpurl.HttpUrl">[docs]</a><span class="k">class</span> <span class="nc">HttpUrl</span><span class="p">(</span><span class="n">internpaturl</span><span class="o">.</span><span class="n">InternPatternUrl</span><span class="p">,</span> <span class="n">proxysupport</span><span class="o">.</span><span class="n">ProxySupport</span><span class="p">):</span>
+<div class="viewcode-block" id="HttpUrl"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.httpurl.html#linkcheck.checker.httpurl.HttpUrl">[docs]</a><span class="k">class</span> <span class="nc">HttpUrl</span><span class="p">(</span><span class="n">internpaturl</span><span class="o">.</span><span class="n">InternPatternUrl</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Url link with http scheme.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -474,8 +473,6 @@
 <span class="sd">            valid request</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="o">.</span><span class="n">get_request_session</span><span class="p">()</span>
-        <span class="c1"># set the proxy, so a 407 status after this is an error</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_proxy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;proxy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scheme</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">construct_auth</span><span class="p">()</span>
         <span class="c1"># check robots.txt</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">allows_robots</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">):</span>
@@ -597,8 +594,6 @@
         <span class="sd">&quot;&quot;&quot;Construct keyword parameters for Session.request() and</span>
 <span class="sd">        Session.resolve_redirects().&quot;&quot;&quot;</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;timeout&quot;</span><span class="p">])</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;proxies&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">proxytype</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="p">}</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s2">&quot;https&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;sslverify&quot;</span><span class="p">]:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;verify&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;sslverify&quot;</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>

@@ -47,7 +47,6 @@ linkcheck.checker
    linkcheck.checker.itmsservicesurl
    linkcheck.checker.mailtourl
    linkcheck.checker.nntpurl
-   linkcheck.checker.proxysupport
    linkcheck.checker.telneturl
    linkcheck.checker.unknownurl
    linkcheck.checker.urlbase
