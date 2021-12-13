@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.checker.httpurl &mdash; LinkChecker 10.0.1.post68+g900586dc documentation</title>
+  <title>linkcheck.checker.httpurl &mdash; LinkChecker 10.0.1.post71+g945ad903 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -30,7 +30,7 @@
             <img src="../../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post68+g900586dc
+                10.0.1.post71+g945ad903
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -389,8 +389,6 @@
 <span class="kn">from</span> <span class="nn">.const</span> <span class="kn">import</span> <span class="n">WARN_HTTP_EMPTY_CONTENT</span><span class="p">,</span> <span class="n">WARN_URL_RATE_LIMITED</span>
 <span class="kn">from</span> <span class="nn">requests.sessions</span> <span class="kn">import</span> <span class="n">REDIRECT_STATI</span>
 
-<span class="c1"># assumed HTTP header encoding</span>
-<span class="n">HEADER_ENCODING</span> <span class="o">=</span> <span class="s2">&quot;iso-8859-1&quot;</span>
 <span class="n">HTTP_SCHEMAS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;http://&#39;</span><span class="p">,</span> <span class="s1">&#39;https://&#39;</span><span class="p">)</span>
 
 <span class="c1"># match for robots meta element content attribute</span>
@@ -521,13 +519,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">url_connection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_connection</span><span class="o">.</span><span class="n">headers</span>
         <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="s2">&quot;Response headers </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_connection</span><span class="o">.</span><span class="n">encoding</span> <span class="o">==</span> <span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">:</span>
-            <span class="c1"># Can&#39;t trust ISO-8859-1 because it is Requests&#39; fallback for text</span>
-            <span class="c1"># content-types. We fall back to it in UrlBase.get_content() if</span>
-            <span class="c1"># Beautiful Soup doesn&#39;t return an encoding.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_connection</span><span class="o">.</span><span class="n">encoding</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_encoding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url_connection</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
         <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="s2">&quot;Response encoding </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_ssl_info</span><span class="p">()</span>
 
@@ -581,6 +573,19 @@
         <span class="sd">&quot;&quot;&quot;Return content MIME type or empty string.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="n">httputil</span><span class="o">.</span><span class="n">get_content_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="HttpUrl.set_encoding"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.httpurl.html#linkcheck.checker.httpurl.HttpUrl.set_encoding">[docs]</a>    <span class="k">def</span> <span class="nf">set_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set content encoding&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">encoding</span> <span class="o">==</span> <span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">:</span>
+            <span class="c1"># Although RFC 2616 (HTTP/1.1) says that text data in a non-ISO-8859-1</span>
+            <span class="c1"># (or subset) character set must be labelled with a charset,</span>
+            <span class="c1"># that is not always the case and then the default ISO-8859-1 is</span>
+            <span class="c1"># set by Requests.</span>
+            <span class="c1"># We fall back to it in UrlBase.get_content() if Beautiful Soup</span>
+            <span class="c1"># doesn&#39;t return an encoding.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="n">encoding</span></div>
+
 <div class="viewcode-block" id="HttpUrl.is_redirect"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.httpurl.html#linkcheck.checker.httpurl.HttpUrl.is_redirect">[docs]</a>    <span class="k">def</span> <span class="nf">is_redirect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check if current response is a redirect.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
@@ -630,7 +635,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_add_response_info</span><span class="p">()</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_redirect</span><span class="p">():</span>
                 <span class="c1"># run connection plugins for old connection</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="o">.</span><span class="n">plugin_manager</span><span class="o">.</span><span class="n">run_connection_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">aggregate</span><span class="o">.</span><span class="n">plugin_manager</span><span class="o">.</span><span class="n">run_connection_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="s2">&quot;Redirected response headers </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_encoding</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="s2">&quot;Redirected response encoding </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="HttpUrl.check_response"><a class="viewcode-back" href="../../../code/linkcheck/linkcheck.checker.httpurl.html#linkcheck.checker.httpurl.HttpUrl.check_response">[docs]</a>    <span class="k">def</span> <span class="nf">check_response</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check final result and log it.&quot;&quot;&quot;</span>
