@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.checker.httpurl &mdash; LinkChecker 10.0.1.post107+gd8b0e023 documentation</title>
+  <title>linkcheck.checker.httpurl &mdash; LinkChecker 10.0.1.post112+g366dcc14 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -30,7 +30,7 @@
             <img src="../../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post107+gd8b0e023
+                10.0.1.post112+g366dcc14
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -535,7 +535,7 @@
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">raw_connection</span><span class="o">.</span><span class="n">sock</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># sometimes the socket is not yet connected</span>
-            <span class="c1"># see https://github.com/kennethreitz/requests/issues/1966</span>
+            <span class="c1"># see https://github.com/psf/requests/issues/1966</span>
             <span class="n">raw_connection</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">raw_connection</span><span class="o">.</span><span class="n">sock</span>
 
