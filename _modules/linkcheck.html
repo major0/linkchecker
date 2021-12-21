@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck &mdash; LinkChecker 10.0.1.post114+g58adec0a documentation</title>
+  <title>linkcheck &mdash; LinkChecker 10.0.1.post122+gbfee7835 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -31,7 +31,7 @@
             <img src="../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post114+g58adec0a
+                10.0.1.post122+gbfee7835
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -223,6 +223,12 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../code/linkcheck/linkcheck.cmdline.html">linkcheck.cmdline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../code/linkcheck/linkcheck.command.html">linkcheck.command</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../code/linkcheck/linkcheck.command.arg_parser.html">linkcheck.command.arg_parser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../code/linkcheck/linkcheck.command.linkchecker.html">linkcheck.command.linkchecker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../code/linkcheck/linkcheck.command.setup_config.html">linkcheck.command.setup_config</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../code/linkcheck/linkcheck.configuration.html">linkcheck.configuration</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../code/linkcheck/linkcheck.configuration.confparse.html">linkcheck.configuration.confparse</a></li>
 </ul>
@@ -371,8 +377,6 @@
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">signal</span>
-<span class="kn">import</span> <span class="nn">traceback</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">i18n</span><span class="p">,</span> <span class="n">log</span>
 <span class="kn">from</span> <span class="nn">.logconf</span> <span class="kn">import</span> <span class="p">(</span>
@@ -468,43 +472,6 @@
 
 <span class="c1"># initialize i18n, puts _() and _n() function into global namespace</span>
 <span class="n">init_i18n</span><span class="p">()</span>
-
-
-<div class="viewcode-block" id="drop_privileges"><a class="viewcode-back" href="../code/linkcheck/linkcheck.html#linkcheck.drop_privileges">[docs]</a><span class="k">def</span> <span class="nf">drop_privileges</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Make sure to drop root privileges on POSIX systems.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s1">&#39;posix&#39;</span><span class="p">:</span>
-        <span class="k">return</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">geteuid</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="n">LOG_CHECK</span><span class="p">,</span>
-            <span class="n">_</span><span class="p">(</span>
-                <span class="s2">&quot;Running as root user; &quot;</span>
-                <span class="s2">&quot;dropping privileges by changing user to nobody.&quot;</span>
-            <span class="p">),</span>
-        <span class="p">)</span>
-        <span class="kn">import</span> <span class="nn">pwd</span>
-
-        <span class="n">os</span><span class="o">.</span><span class="n">seteuid</span><span class="p">(</span><span class="n">pwd</span><span class="o">.</span><span class="n">getpwnam</span><span class="p">(</span><span class="s1">&#39;nobody&#39;</span><span class="p">)[</span><span class="mi">3</span><span class="p">])</span></div>
-
-
-<span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="s2">&quot;SIGUSR1&quot;</span><span class="p">):</span>
-    <span class="c1"># install SIGUSR1 handler</span>
-    <span class="kn">from</span> <span class="nn">.decorators</span> <span class="kn">import</span> <span class="n">signal_handler</span>
-
-<div class="viewcode-block" id="print_threadstacks"><a class="viewcode-back" href="../code/linkcheck/linkcheck.html#linkcheck.print_threadstacks">[docs]</a>    <span class="nd">@signal_handler</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGUSR1</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">print_threadstacks</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Print stack traces of all running threads.&quot;&quot;&quot;</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">LOG_THREAD</span><span class="p">,</span> <span class="s2">&quot;*** STACKTRACE START ***&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">threadId</span><span class="p">,</span> <span class="n">stack</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">_current_frames</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">LOG_THREAD</span><span class="p">,</span> <span class="s2">&quot;# ThreadID: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">threadId</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">traceback</span><span class="o">.</span><span class="n">extract_stack</span><span class="p">(</span><span class="n">stack</span><span class="p">):</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                    <span class="n">LOG_THREAD</span><span class="p">,</span> <span class="s1">&#39;File: &quot;</span><span class="si">%s</span><span class="s1">&quot;, line </span><span class="si">%d</span><span class="s1">, in </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-                <span class="p">)</span>
-                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
-                    <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">LOG_THREAD</span><span class="p">,</span> <span class="s2">&quot;  </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">line</span><span class="p">)</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">LOG_THREAD</span><span class="p">,</span> <span class="s2">&quot;*** STACKTRACE END ***&quot;</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

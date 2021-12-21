@@ -1,0 +1,30 @@
+linkcheck.command.setup\_config
+===============================
+
+.. automodule:: linkcheck.command.setup_config
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      has_encoding
+      setup_config
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -13,12 +13,10 @@ linkcheck
 
    .. autosummary::
    
-      drop_privileges
       get_install_data
       get_link_pat
       init_i18n
       module_path
-      print_threadstacks
    
    
 
@@ -52,6 +50,7 @@ linkcheck
    linkcheck.checker
    linkcheck.cmdline
    linkcheck.colorama
+   linkcheck.command
    linkcheck.configuration
    linkcheck.containers
    linkcheck.cookies
