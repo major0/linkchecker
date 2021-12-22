@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Upgrading &mdash; LinkChecker 10.0.1.post130+g6bfab5ad documentation</title>
+  <title>Upgrading &mdash; LinkChecker 10.0.1.post132+gd1078ed8 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post130+g6bfab5ad
+                10.0.1.post132+gd1078ed8
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -58,7 +58,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Upgrading</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#migrating-from-10-0-to-10-x">Migrating from 10.0 to 10.x</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#migrating-from-10-0-to-10-1">Migrating from 10.0 to 10.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#migrating-from-9-x-to-10-0">Migrating from 9.x to 10.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#migrating-from-8-x-to-9-0">Migrating from 8.x to 9.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#migrating-from-8-4-to-8-5">Migrating from 8.4 to 8.5</a></li>
@@ -349,10 +349,12 @@
              
   <section id="upgrading">
 <h1>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this headline"></a></h1>
-<section id="migrating-from-10-0-to-10-x">
-<h2>Migrating from 10.0 to 10.x<a class="headerlink" href="#migrating-from-10-0-to-10-x" title="Permalink to this headline"></a></h2>
+<section id="migrating-from-10-0-to-10-1">
+<h2>Migrating from 10.0 to 10.1<a class="headerlink" href="#migrating-from-10-0-to-10-1" title="Permalink to this headline"></a></h2>
 <p>If installing from source and application translations are needed the Python
 polib package is required to be installed before LinkChecker is installed.</p>
+<p>The linkchecker command is now generated using an entry point: for Python 3.6
+and 3.7 importlib_metadata is added to the run-time requirements.</p>
 <p>The environment variable ftp_proxy is no longer supported. GNOME and KDE proxy
 settings are not read; KDE proxy users especially may need to set
 the http_proxy environment variable themselves.</p>
