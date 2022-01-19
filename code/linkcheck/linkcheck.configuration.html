@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.configuration &mdash; LinkChecker 10.0.1.post132+gd1078ed8 documentation</title>
+  <title>linkcheck.configuration &mdash; LinkChecker 10.1.0.post20+g5ec0aec1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post132+gd1078ed8
+                10.1.0.post20+g5ec0aec1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -58,6 +58,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../upgrading.html">Upgrading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-10-1-to-10-x">Migrating from 10.1 to 10.x</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-10-0-to-10-1">Migrating from 10.0 to 10.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-9-x-to-10-0">Migrating from 9.x to 10.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-8-x-to-9-0">Migrating from 8.x to 9.0</a></li>
@@ -238,6 +239,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.containers.html">linkcheck.containers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.cookies.html">linkcheck.cookies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkcheck.data.html">linkcheck.data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.decorators.html">linkcheck.decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.director.html">linkcheck.director</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.director.aggregator.html">linkcheck.director.aggregator</a></li>
@@ -367,12 +369,6 @@
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.configuration.get_plugin_folders" title="linkcheck.configuration.get_plugin_folders"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_plugin_folders</span></code></a>()</p></td>
 <td><p>Get linkchecker plugin folders.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.configuration.get_share_dir" title="linkcheck.configuration.get_share_dir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_share_dir</span></code></a>()</p></td>
-<td><p>Return absolute path of LinkChecker example configuration.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.configuration.get_share_file" title="linkcheck.configuration.get_share_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_share_file</span></code></a>(filename[, devel_dir])</p></td>
-<td><p>Return a filename in the share directory.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.configuration.get_system_cert_file" title="linkcheck.configuration.get_system_cert_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_system_cert_file</span></code></a>()</p></td>
 <td><p>Try to find a system-wide SSL certificate file.</p></td>
@@ -531,35 +527,6 @@ exist.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.configuration.get_share_dir">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">get_share_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#get_share_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.get_share_dir" title="Permalink to this definition"></a></dt>
-<dd><p>Return absolute path of LinkChecker example configuration.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.configuration.get_share_file">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">get_share_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">devel_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#get_share_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.get_share_file" title="Permalink to this definition"></a></dt>
-<dd><p>Return a filename in the share directory.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>devel_dir</strong> (<em>string</em>) – directory to search when developing</p></li>
-<li><p><strong>filename</strong> (<em>string</em>) – filename to search for</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the found filename or None</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p>ValueError if not found</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="linkcheck.configuration.get_system_cert_file">
 <span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">get_system_cert_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#get_system_cert_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.get_system_cert_file" title="Permalink to this definition"></a></dt>
 <dd><p>Try to find a system-wide SSL certificate file.
@@ -572,9 +539,9 @@ exist.</p>
 <span class="sig-prename descclassname"><span class="pre">linkcheck.configuration.</span></span><span class="sig-name descname"><span class="pre">get_user_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/configuration.html#get_user_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.configuration.get_user_config" title="Permalink to this definition"></a></dt>
 <dd><p>Get the user configuration filename.
 If the user configuration file does not exist, copy it from the initial
-configuration file, but only if this is not a portable installation.
+configuration file.
 Returns path to user config file (which might not exist due to copy
-failures or on portable systems).
+failures).
 :return configuration filename
 :rtype string</p>
 </dd></dl>
@@ -631,7 +598,7 @@ in os.path.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2021 LinkChecker Authors.</p>
+    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2022 LinkChecker Authors.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

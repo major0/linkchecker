@@ -16,8 +16,6 @@ linkcheck.configuration
       get_certifi_file
       get_modules_info
       get_plugin_folders
-      get_share_dir
-      get_share_file
       get_system_cert_file
       get_user_config
       get_user_data

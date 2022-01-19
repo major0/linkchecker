@@ -4,12 +4,12 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.logconf &mdash; LinkChecker 10.1.0.post20+g5ec0aec1 documentation</title>
+  <title>linkcheck.data &mdash; LinkChecker 10.1.0.post20+g5ec0aec1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://linkchecker.github.io/linkchecker/code/linkcheck/linkcheck.logconf.html" />
+    <link rel="canonical" href="https://linkchecker.github.io/linkchecker/code/linkcheck/linkcheck.data.html" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -21,8 +21,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="linkcheck.logger" href="linkcheck.logger.html" />
-    <link rel="prev" title="linkcheck.log" href="linkcheck.log.html" /> 
+    <link rel="next" title="linkcheck.decorators" href="linkcheck.decorators.html" />
+    <link rel="prev" title="linkcheck.cookies" href="linkcheck.cookies.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -239,7 +239,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.containers.html">linkcheck.containers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.cookies.html">linkcheck.cookies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="linkcheck.data.html">linkcheck.data</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">linkcheck.data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.decorators.html">linkcheck.decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.director.html">linkcheck.director</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.director.aggregator.html">linkcheck.director.aggregator</a></li>
@@ -266,7 +266,7 @@
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.loader.html">linkcheck.loader</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.lock.html">linkcheck.lock</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.log.html">linkcheck.log</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">linkcheck.logconf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkcheck.logconf.html">linkcheck.logconf</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.logger.html">linkcheck.logger</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.logger.csvlog.html">linkcheck.logger.csvlog</a></li>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.logger.customxml.html">linkcheck.logger.customxml</a></li>
@@ -341,9 +341,9 @@
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Code</a> &raquo;</li>
           <li><a href="linkcheck.html">linkcheck</a> &raquo;</li>
-      <li>linkcheck.logconf</li>
+      <li>linkcheck.data</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/code/linkcheck/linkcheck.logconf.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/code/linkcheck/linkcheck.data.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -351,80 +351,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-linkcheck.logconf">
-<span id="linkcheck-logconf"></span><h1>linkcheck.logconf<a class="headerlink" href="#module-linkcheck.logconf" title="Permalink to this headline"></a></h1>
-<p>Logging configuration</p>
-<p class="rubric">Functions</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.logconf.add_loghandler" title="linkcheck.logconf.add_loghandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_loghandler</span></code></a>(handler)</p></td>
-<td><p>Add log handler to root logger and LOG_ROOT and set formatting.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.logconf.init_log_config" title="linkcheck.logconf.init_log_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_log_config</span></code></a>([handler])</p></td>
-<td><p>Set up the application logging (not to be confused with check loggers).</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.logconf.remove_loghandler" title="linkcheck.logconf.remove_loghandler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_loghandler</span></code></a>(handler)</p></td>
-<td><p>Remove log handler from root logger and LOG_ROOT.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.logconf.reset_loglevel" title="linkcheck.logconf.reset_loglevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset_loglevel</span></code></a>()</p></td>
-<td><p>Reset log level to display only warnings and errors.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.logconf.set_debug" title="linkcheck.logconf.set_debug"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_debug</span></code></a>(loggers)</p></td>
-<td><p>Set debugging log level.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.logconf.set_loglevel" title="linkcheck.logconf.set_loglevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_loglevel</span></code></a>(loggers, level)</p></td>
-<td><p>Set logging levels for given loggers.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.logconf.add_loghandler">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.logconf.</span></span><span class="sig-name descname"><span class="pre">add_loghandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/logconf.html#add_loghandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.logconf.add_loghandler" title="Permalink to this definition"></a></dt>
-<dd><p>Add log handler to root logger and LOG_ROOT and set formatting.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.logconf.init_log_config">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.logconf.</span></span><span class="sig-name descname"><span class="pre">init_log_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/logconf.html#init_log_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.logconf.init_log_config" title="Permalink to this definition"></a></dt>
-<dd><p>Set up the application logging (not to be confused with check loggers).</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.logconf.remove_loghandler">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.logconf.</span></span><span class="sig-name descname"><span class="pre">remove_loghandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/logconf.html#remove_loghandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.logconf.remove_loghandler" title="Permalink to this definition"></a></dt>
-<dd><p>Remove log handler from root logger and LOG_ROOT.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.logconf.reset_loglevel">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.logconf.</span></span><span class="sig-name descname"><span class="pre">reset_loglevel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/logconf.html#reset_loglevel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.logconf.reset_loglevel" title="Permalink to this definition"></a></dt>
-<dd><p>Reset log level to display only warnings and errors.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.logconf.set_debug">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.logconf.</span></span><span class="sig-name descname"><span class="pre">set_debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loggers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/logconf.html#set_debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.logconf.set_debug" title="Permalink to this definition"></a></dt>
-<dd><p>Set debugging log level.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.logconf.set_loglevel">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.logconf.</span></span><span class="sig-name descname"><span class="pre">set_loglevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loggers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/logconf.html#set_loglevel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.logconf.set_loglevel" title="Permalink to this definition"></a></dt>
-<dd><p>Set logging levels for given loggers.</p>
-</dd></dl>
-
+  <section id="module-linkcheck.data">
+<span id="linkcheck-data"></span><h1>linkcheck.data<a class="headerlink" href="#module-linkcheck.data" title="Permalink to this headline"></a></h1>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="linkcheck.log.html" class="btn btn-neutral float-left" title="linkcheck.log" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="linkcheck.logger.html" class="btn btn-neutral float-right" title="linkcheck.logger" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="linkcheck.cookies.html" class="btn btn-neutral float-left" title="linkcheck.cookies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="linkcheck.decorators.html" class="btn btn-neutral float-right" title="linkcheck.decorators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

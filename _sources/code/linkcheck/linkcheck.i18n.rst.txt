@@ -14,15 +14,12 @@ linkcheck.i18n
    .. autosummary::
    
       get_encoded_writer
-      get_headers_lang
       get_lang
       get_locale
       get_translator
       init
       install_builtin
       install_language
-      lang_name
-      lang_trans
       norm_locale
    
    

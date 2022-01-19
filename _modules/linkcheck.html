@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck &mdash; LinkChecker 10.0.1.post132+gd1078ed8 documentation</title>
+  <title>linkcheck &mdash; LinkChecker 10.1.0.post20+g5ec0aec1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -31,7 +31,7 @@
             <img src="../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post132+gd1078ed8
+                10.1.0.post20+g5ec0aec1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -55,6 +55,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../upgrading.html">Upgrading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading.html#migrating-from-10-1-to-10-x">Migrating from 10.1 to 10.x</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../upgrading.html#migrating-from-10-0-to-10-1">Migrating from 10.0 to 10.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../upgrading.html#migrating-from-9-x-to-10-0">Migrating from 9.x to 10.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../upgrading.html#migrating-from-8-x-to-9-0">Migrating from 8.x to 9.0</a></li>
@@ -235,6 +236,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../code/linkcheck/linkcheck.containers.html">linkcheck.containers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../code/linkcheck/linkcheck.cookies.html">linkcheck.cookies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../code/linkcheck/linkcheck.data.html">linkcheck.data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../code/linkcheck/linkcheck.decorators.html">linkcheck.decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../code/linkcheck/linkcheck.director.html">linkcheck.director</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../code/linkcheck/linkcheck.director.aggregator.html">linkcheck.director.aggregator</a></li>
@@ -367,11 +369,11 @@
 <span class="c1"># version checks</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;final&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;final&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
     <span class="kn">import</span> <span class="nn">platform</span>
 
     <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
-        <span class="s2">&quot;This program requires Python 3.6 or later instead of </span><span class="si">%s</span><span class="s2">.&quot;</span>
+        <span class="s2">&quot;This program requires Python 3.7 or later instead of </span><span class="si">%s</span><span class="s2">.&quot;</span>
         <span class="o">%</span> <span class="n">platform</span><span class="o">.</span><span class="n">python_version</span><span class="p">()</span>
     <span class="p">)</span>
 
@@ -387,21 +389,14 @@
     <span class="n">LOG_THREAD</span><span class="p">,</span>
     <span class="n">LOG_PLUGIN</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">import</span> <span class="nn">_LinkChecker_configdata</span> <span class="k">as</span> <span class="nn">configdata</span>
+
+<span class="n">COMMAND_NAME</span> <span class="o">=</span> <span class="s2">&quot;linkchecker&quot;</span>
+<span class="n">PACKAGE_NAME</span> <span class="o">=</span> <span class="n">__package__</span>
 
 
 <div class="viewcode-block" id="module_path"><a class="viewcode-back" href="../code/linkcheck/linkcheck.html#linkcheck.module_path">[docs]</a><span class="k">def</span> <span class="nf">module_path</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Return absolute directory of system executable.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="get_install_data"><a class="viewcode-back" href="../code/linkcheck/linkcheck.html#linkcheck.get_install_data">[docs]</a><span class="k">def</span> <span class="nf">get_install_data</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Return absolute path of LinkChecker data installation directory.&quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">.loader</span> <span class="kn">import</span> <span class="n">is_frozen</span>
-
-    <span class="k">if</span> <span class="n">is_frozen</span><span class="p">():</span>
-        <span class="k">return</span> <span class="n">module_path</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">configdata</span><span class="o">.</span><span class="n">install_data</span></div>
 
 
 <div class="viewcode-block" id="LinkCheckerError"><a class="viewcode-back" href="../code/linkcheck/linkcheck.html#linkcheck.LinkCheckerError">[docs]</a><span class="k">class</span> <span class="nc">LinkCheckerError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
@@ -456,8 +451,9 @@
     <span class="k">if</span> <span class="s1">&#39;LOCPATH&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
         <span class="n">locdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;LOCPATH&#39;</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">locdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_install_data</span><span class="p">(),</span> <span class="s1">&#39;share&#39;</span><span class="p">,</span> <span class="s1">&#39;locale&#39;</span><span class="p">)</span>
-    <span class="n">i18n</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">configdata</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">locdir</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span>
+        <span class="c1"># Need Python 3.9 for importlib.resources.files</span>
+        <span class="n">locdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__path__</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;locale&#39;</span><span class="p">)</span>
+    <span class="n">i18n</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">COMMAND_NAME</span><span class="p">,</span> <span class="n">locdir</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span>
     <span class="c1"># install translated log level names</span>
     <span class="kn">import</span> <span class="nn">logging</span>
 
@@ -481,7 +477,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2021 LinkChecker Authors.</p>
+    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2022 LinkChecker Authors.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -19,7 +19,6 @@ linkcheck.loader
       get_module_plugins
       get_package_modules
       get_plugins
-      is_frozen
    
    
 

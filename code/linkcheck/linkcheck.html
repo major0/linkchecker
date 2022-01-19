@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck &mdash; LinkChecker 10.0.1.post132+gd1078ed8 documentation</title>
+  <title>linkcheck &mdash; LinkChecker 10.1.0.post20+g5ec0aec1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post132+gd1078ed8
+                10.1.0.post20+g5ec0aec1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -58,6 +58,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../upgrading.html">Upgrading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-10-1-to-10-x">Migrating from 10.1 to 10.x</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-10-0-to-10-1">Migrating from 10.0 to 10.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-9-x-to-10-0">Migrating from 9.x to 10.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-8-x-to-9-0">Migrating from 8.x to 9.0</a></li>
@@ -238,6 +239,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.containers.html">linkcheck.containers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.cookies.html">linkcheck.cookies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkcheck.data.html">linkcheck.data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.decorators.html">linkcheck.decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.director.html">linkcheck.director</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.director.aggregator.html">linkcheck.director.aggregator</a></li>
@@ -358,16 +360,13 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.get_install_data" title="linkcheck.get_install_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_install_data</span></code></a>()</p></td>
-<td><p>Return absolute path of LinkChecker data installation directory.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.get_link_pat" title="linkcheck.get_link_pat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_link_pat</span></code></a>(arg[, strict])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.get_link_pat" title="linkcheck.get_link_pat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_link_pat</span></code></a>(arg[, strict])</p></td>
 <td><p>Get a link pattern matcher for intern/extern links.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.init_i18n" title="linkcheck.init_i18n"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_i18n</span></code></a>([loc])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.init_i18n" title="linkcheck.init_i18n"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_i18n</span></code></a>([loc])</p></td>
 <td><p>Initialize i18n with the configured locale dir.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.module_path" title="linkcheck.module_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">module_path</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.module_path" title="linkcheck.module_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">module_path</span></code></a>()</p></td>
 <td><p>Return absolute directory of system executable.</p></td>
 </tr>
 </tbody>
@@ -399,12 +398,6 @@
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linkcheck.</span></span><span class="sig-name descname"><span class="pre">LinkCheckerInterrupt</span></span><a class="reference internal" href="../../_modules/linkcheck.html#LinkCheckerInterrupt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.LinkCheckerInterrupt" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Used for testing.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="linkcheck.get_install_data">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.</span></span><span class="sig-name descname"><span class="pre">get_install_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck.html#get_install_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.get_install_data" title="Permalink to this definition"></a></dt>
-<dd><p>Return absolute path of LinkChecker data installation directory.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -486,79 +479,82 @@ variable LOCPATH can also specify a locale dir.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="linkcheck.cookies.html#module-linkcheck.cookies" title="linkcheck.cookies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.cookies</span></code></a></p></td>
 <td><p>Parsing of cookies.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.decorators.html#module-linkcheck.decorators" title="linkcheck.decorators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.decorators</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.data.html#module-linkcheck.data" title="linkcheck.data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.data</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.decorators.html#module-linkcheck.decorators" title="linkcheck.decorators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.decorators</span></code></a></p></td>
 <td><p>Simple decorators (usable in Python &gt;= 2.4).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.director.html#module-linkcheck.director" title="linkcheck.director"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.director</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.director.html#module-linkcheck.director" title="linkcheck.director"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.director</span></code></a></p></td>
 <td><p>Management of checking a queue of links with several threads.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.dummy.html#module-linkcheck.dummy" title="linkcheck.dummy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.dummy</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.dummy.html#module-linkcheck.dummy" title="linkcheck.dummy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.dummy</span></code></a></p></td>
 <td><p>Dummy objects.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.fileutil.html#module-linkcheck.fileutil" title="linkcheck.fileutil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.fileutil</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.fileutil.html#module-linkcheck.fileutil" title="linkcheck.fileutil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.fileutil</span></code></a></p></td>
 <td><p>File and path utilities.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.ftpparse.html#module-linkcheck.ftpparse" title="linkcheck.ftpparse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.ftpparse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.ftpparse.html#module-linkcheck.ftpparse" title="linkcheck.ftpparse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.ftpparse</span></code></a></p></td>
 <td><p>Python implementation of a part of Dan Bernstein's ftpparse library.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.htmlutil.html#module-linkcheck.htmlutil" title="linkcheck.htmlutil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.htmlutil</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.htmlutil.html#module-linkcheck.htmlutil" title="linkcheck.htmlutil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.htmlutil</span></code></a></p></td>
 <td><p>HTML utils</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.httputil.html#module-linkcheck.httputil" title="linkcheck.httputil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.httputil</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.httputil.html#module-linkcheck.httputil" title="linkcheck.httputil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.httputil</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.i18n.html#module-linkcheck.i18n" title="linkcheck.i18n"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.i18n</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.i18n.html#module-linkcheck.i18n" title="linkcheck.i18n"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.i18n</span></code></a></p></td>
 <td><p>Application internationalization support.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.lc_cgi.html#module-linkcheck.lc_cgi" title="linkcheck.lc_cgi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.lc_cgi</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.lc_cgi.html#module-linkcheck.lc_cgi" title="linkcheck.lc_cgi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.lc_cgi</span></code></a></p></td>
 <td><p>Functions used by the WSGI script.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.loader.html#module-linkcheck.loader" title="linkcheck.loader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.loader</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.loader.html#module-linkcheck.loader" title="linkcheck.loader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.loader</span></code></a></p></td>
 <td><p>Functions to load plugin modules.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.lock.html#module-linkcheck.lock" title="linkcheck.lock"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.lock</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.lock.html#module-linkcheck.lock" title="linkcheck.lock"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.lock</span></code></a></p></td>
 <td><p>Locking utility class.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.log.html#module-linkcheck.log" title="linkcheck.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.log</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.log.html#module-linkcheck.log" title="linkcheck.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.log</span></code></a></p></td>
 <td><p>Logging and debug functions.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.logconf.html#module-linkcheck.logconf" title="linkcheck.logconf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.logconf</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.logconf.html#module-linkcheck.logconf" title="linkcheck.logconf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.logconf</span></code></a></p></td>
 <td><p>Logging configuration</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.logger.html#module-linkcheck.logger" title="linkcheck.logger"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.logger</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.logger.html#module-linkcheck.logger" title="linkcheck.logger"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.logger</span></code></a></p></td>
 <td><p>Output logging support for different formats.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.memoryutil.html#module-linkcheck.memoryutil" title="linkcheck.memoryutil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.memoryutil</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.memoryutil.html#module-linkcheck.memoryutil" title="linkcheck.memoryutil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.memoryutil</span></code></a></p></td>
 <td><p>Memory utilities.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.mimeutil.html#module-linkcheck.mimeutil" title="linkcheck.mimeutil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.mimeutil</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.mimeutil.html#module-linkcheck.mimeutil" title="linkcheck.mimeutil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.mimeutil</span></code></a></p></td>
 <td><p>File and path utilities.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.network.html#module-linkcheck.network" title="linkcheck.network"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.network</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.network.html#module-linkcheck.network" title="linkcheck.network"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.network</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.parser.html#module-linkcheck.parser" title="linkcheck.parser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.parser</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.parser.html#module-linkcheck.parser" title="linkcheck.parser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.parser</span></code></a></p></td>
 <td><p>Main functions for link parsing</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.plugins.html#module-linkcheck.plugins" title="linkcheck.plugins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.plugins</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.plugins.html#module-linkcheck.plugins" title="linkcheck.plugins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.plugins</span></code></a></p></td>
 <td><p>Module for plugin management.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.robotparser2.html#module-linkcheck.robotparser2" title="linkcheck.robotparser2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.robotparser2</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.robotparser2.html#module-linkcheck.robotparser2" title="linkcheck.robotparser2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.robotparser2</span></code></a></p></td>
 <td><p>Robots.txt parser.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.socketutil.html#module-linkcheck.socketutil" title="linkcheck.socketutil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.socketutil</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.socketutil.html#module-linkcheck.socketutil" title="linkcheck.socketutil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.socketutil</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.strformat.html#module-linkcheck.strformat" title="linkcheck.strformat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.strformat</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.strformat.html#module-linkcheck.strformat" title="linkcheck.strformat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.strformat</span></code></a></p></td>
 <td><p>Various string utility functions.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.threader.html#module-linkcheck.threader" title="linkcheck.threader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.threader</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.threader.html#module-linkcheck.threader" title="linkcheck.threader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.threader</span></code></a></p></td>
 <td><p>Support for managing threads.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.trace.html#module-linkcheck.trace" title="linkcheck.trace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.trace</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.trace.html#module-linkcheck.trace" title="linkcheck.trace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.trace</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="linkcheck.url.html#module-linkcheck.url" title="linkcheck.url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.url</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="linkcheck.url.html#module-linkcheck.url" title="linkcheck.url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linkcheck.url</span></code></a></p></td>
 <td><p>Functions for parsing and matching URL strings.</p></td>
 </tr>
 </tbody>
@@ -576,7 +572,7 @@ variable LOCPATH can also specify a locale dir.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2021 LinkChecker Authors.</p>
+    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2022 LinkChecker Authors.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

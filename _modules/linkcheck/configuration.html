@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.configuration &mdash; LinkChecker 10.0.1.post132+gd1078ed8 documentation</title>
+  <title>linkcheck.configuration &mdash; LinkChecker 10.1.0.post20+g5ec0aec1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -31,7 +31,7 @@
             <img src="../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post132+gd1078ed8
+                10.1.0.post20+g5ec0aec1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -55,6 +55,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../upgrading.html">Upgrading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-10-1-to-10-x">Migrating from 10.1 to 10.x</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-10-0-to-10-1">Migrating from 10.0 to 10.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-9-x-to-10-0">Migrating from 9.x to 10.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-8-x-to-9-0">Migrating from 8.x to 9.0</a></li>
@@ -235,6 +236,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../code/linkcheck/linkcheck.containers.html">linkcheck.containers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../code/linkcheck/linkcheck.cookies.html">linkcheck.cookies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../code/linkcheck/linkcheck.data.html">linkcheck.data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../code/linkcheck/linkcheck.decorators.html">linkcheck.decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../code/linkcheck/linkcheck.director.html">linkcheck.director</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../code/linkcheck/linkcheck.director.aggregator.html">linkcheck.director.aggregator</a></li>
@@ -365,27 +367,40 @@
 <span class="sd">Store metadata and options.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span> <span class="nn">importlib.resources</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">urllib.parse</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">socket</span>
-<span class="kn">import</span> <span class="nn">_LinkChecker_configdata</span> <span class="k">as</span> <span class="nn">configdata</span>
-<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">LOG_CHECK</span><span class="p">,</span> <span class="n">get_install_data</span><span class="p">,</span> <span class="n">fileutil</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">importlib.metadata</span> <span class="kn">import</span> <span class="n">distribution</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c1"># Python 3.7</span>
+    <span class="kn">from</span> <span class="nn">importlib_metadata</span> <span class="kn">import</span> <span class="n">distribution</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">LOG_CHECK</span><span class="p">,</span> <span class="n">COMMAND_NAME</span><span class="p">,</span> <span class="n">PACKAGE_NAME</span><span class="p">,</span> <span class="n">fileutil</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">confparse</span>
 <span class="kn">from</span> <span class="nn">xdg.BaseDirectory</span> <span class="kn">import</span> <span class="n">xdg_config_home</span><span class="p">,</span> <span class="n">xdg_data_home</span>
 
-<span class="n">Version</span> <span class="o">=</span> <span class="n">configdata</span><span class="o">.</span><span class="n">version</span>
-<span class="n">ReleaseDate</span> <span class="o">=</span> <span class="n">configdata</span><span class="o">.</span><span class="n">release_date</span>
-<span class="n">AppName</span> <span class="o">=</span> <span class="n">configdata</span><span class="o">.</span><span class="n">name</span>
+<span class="n">linkchecker_distribution</span> <span class="o">=</span> <span class="n">distribution</span><span class="p">(</span><span class="n">COMMAND_NAME</span><span class="p">)</span>
+<span class="n">Version</span> <span class="o">=</span> <span class="n">linkchecker_distribution</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;Version&quot;</span><span class="p">]</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">ReleaseDate</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span>
+        <span class="n">linkchecker_distribution</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="s2">&quot;RELEASE_DATE&quot;</span><span class="p">))</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+    <span class="n">ReleaseDate</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span>
+<span class="n">AppName</span> <span class="o">=</span> <span class="n">linkchecker_distribution</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span>
 <span class="n">App</span> <span class="o">=</span> <span class="n">AppName</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">Version</span>
-<span class="n">Author</span> <span class="o">=</span> <span class="n">configdata</span><span class="o">.</span><span class="n">author</span>
+<span class="n">Author</span> <span class="o">=</span> <span class="n">linkchecker_distribution</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;Author&quot;</span><span class="p">]</span>
 <span class="n">HtmlAuthor</span> <span class="o">=</span> <span class="n">Author</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;nbsp;&#39;</span><span class="p">)</span>
-<span class="n">Copyright</span> <span class="o">=</span> <span class="s2">&quot;Copyright (C) 2000-2016 Bastian Kleineidam, 2010-2021 &quot;</span> <span class="o">+</span> <span class="n">Author</span>
-<span class="n">HtmlCopyright</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Copyright &amp;copy; 2000-2016 Bastian&amp;nbsp;Kleineidam, 2010-2021 &quot;</span>
+<span class="n">Copyright</span> <span class="o">=</span> <span class="s2">&quot;Copyright (C) 2000-2016 Bastian Kleineidam, 2010-2022 &quot;</span> <span class="o">+</span> <span class="n">Author</span>
+<span class="n">HtmlCopyright</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Copyright &amp;copy; 2000-2016 Bastian&amp;nbsp;Kleineidam, 2010-2022 &quot;</span>
                  <span class="o">+</span> <span class="n">HtmlAuthor</span><span class="p">)</span>
 <span class="n">HtmlAppInfo</span> <span class="o">=</span> <span class="n">App</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="n">HtmlCopyright</span>
-<span class="n">Url</span> <span class="o">=</span> <span class="n">configdata</span><span class="o">.</span><span class="n">url</span>
+<span class="n">Url</span> <span class="o">=</span> <span class="n">linkchecker_distribution</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;Home-page&quot;</span><span class="p">]</span>
 <span class="n">SupportUrl</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/linkchecker/linkchecker/issues&quot;</span>
 <span class="n">UserAgent</span> <span class="o">=</span> <span class="s2">&quot;Mozilla/5.0 (compatible; </span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">; +</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">AppName</span><span class="p">,</span> <span class="n">Version</span><span class="p">,</span> <span class="n">Url</span><span class="p">)</span>
 <span class="n">Freeware</span> <span class="o">=</span> <span class="p">(</span>
@@ -394,7 +409,6 @@
 <span class="s2">This is free software, and you are welcome to redistribute it under</span>
 <span class="s2">certain conditions. Look at the file `LICENSE&#39; within this distribution.&quot;&quot;&quot;</span>
 <span class="p">)</span>
-<span class="n">Portable</span> <span class="o">=</span> <span class="n">configdata</span><span class="o">.</span><span class="n">portable</span>
 
 
 <div class="viewcode-block" id="normpath"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.normpath">[docs]</a><span class="k">def</span> <span class="nf">normpath</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
@@ -436,35 +450,6 @@
             <span class="c1"># change the version information attribute</span>
             <span class="n">module_infos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     <span class="k">return</span> <span class="s2">&quot;Modules: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">module_infos</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="get_share_dir"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.get_share_dir">[docs]</a><span class="k">def</span> <span class="nf">get_share_dir</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Return absolute path of LinkChecker example configuration.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_install_data</span><span class="p">(),</span> <span class="s2">&quot;share&quot;</span><span class="p">,</span> <span class="s2">&quot;linkchecker&quot;</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="get_share_file"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.get_share_file">[docs]</a><span class="k">def</span> <span class="nf">get_share_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">devel_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return a filename in the share directory.</span>
-
-<span class="sd">    @param devel_dir: directory to search when developing</span>
-<span class="sd">    @type devel_dir: string</span>
-<span class="sd">    @param filename: filename to search for</span>
-<span class="sd">    @type filename: string</span>
-<span class="sd">    @return: the found filename or None</span>
-<span class="sd">    @rtype: string</span>
-<span class="sd">    @raises: ValueError if not found</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_share_dir</span><span class="p">()]</span>
-    <span class="k">if</span> <span class="n">devel_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># when developing</span>
-        <span class="n">paths</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">devel_dir</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
-        <span class="n">fullpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fullpath</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">fullpath</span>
-    <span class="c1"># not found</span>
-    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> not found in </span><span class="si">%s</span><span class="s2">; check your installation&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">paths</span><span class="p">)</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_system_cert_file"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.get_system_cert_file">[docs]</a><span class="k">def</span> <span class="nf">get_system_cert_file</span><span class="p">():</span>
@@ -684,10 +669,7 @@
                 <span class="k">try</span><span class="p">:</span>
                     <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;sslverify&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_certifi_file</span><span class="p">()</span>
                 <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">ImportError</span><span class="p">):</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;sslverify&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_share_file</span><span class="p">(</span><span class="s1">&#39;cacert.pem&#39;</span><span class="p">)</span>
-                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                        <span class="k">pass</span></div></div>
+                    <span class="k">pass</span></div></div>
 
 
 <div class="viewcode-block" id="get_user_data"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.get_user_data">[docs]</a><span class="k">def</span> <span class="nf">get_user_data</span><span class="p">():</span>
@@ -712,7 +694,7 @@
 <span class="sd">    exist.&quot;&quot;&quot;</span>
     <span class="n">folders</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">defaultfolder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_user_data</span><span class="p">(),</span> <span class="s2">&quot;plugins&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">defaultfolder</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">Portable</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">defaultfolder</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">make_userdir</span><span class="p">(</span><span class="n">defaultfolder</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">errmsg</span><span class="p">:</span>
@@ -738,14 +720,12 @@
 <div class="viewcode-block" id="get_user_config"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.get_user_config">[docs]</a><span class="k">def</span> <span class="nf">get_user_config</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Get the user configuration filename.</span>
 <span class="sd">    If the user configuration file does not exist, copy it from the initial</span>
-<span class="sd">    configuration file, but only if this is not a portable installation.</span>
+<span class="sd">    configuration file.</span>
 <span class="sd">    Returns path to user config file (which might not exist due to copy</span>
-<span class="sd">    failures or on portable systems).</span>
+<span class="sd">    failures).</span>
 <span class="sd">    @return configuration filename</span>
 <span class="sd">    @rtype string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># initial config (with all options explained)</span>
-    <span class="n">initialconf</span> <span class="o">=</span> <span class="n">normpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_share_dir</span><span class="p">(),</span> <span class="s2">&quot;linkcheckerrc&quot;</span><span class="p">))</span>
     <span class="c1"># per user config settings</span>
     <span class="n">homedotfile</span> <span class="o">=</span> <span class="n">normpath</span><span class="p">(</span><span class="s2">&quot;~/.linkchecker/linkcheckerrc&quot;</span><span class="p">)</span>
     <span class="n">userconf</span> <span class="o">=</span> <span class="p">(</span>
@@ -753,18 +733,21 @@
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">homedotfile</span><span class="p">)</span>
         <span class="k">else</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">xdg_config_home</span><span class="p">,</span> <span class="s2">&quot;linkchecker&quot;</span><span class="p">,</span> <span class="s2">&quot;linkcheckerrc&quot;</span><span class="p">)</span>
     <span class="p">)</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">initialconf</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">userconf</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">Portable</span><span class="p">:</span>
-        <span class="c1"># copy the initial configuration to the user configuration</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">make_userdir</span><span class="p">(</span><span class="n">userconf</span><span class="p">)</span>
-            <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">initialconf</span><span class="p">,</span> <span class="n">userconf</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">errmsg</span><span class="p">:</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span>
-                <span class="s2">&quot;could not copy initial configuration file </span><span class="si">%(src)r</span><span class="s2">&quot;</span>
-                <span class="s2">&quot; to </span><span class="si">%(dst)r</span><span class="s2">: </span><span class="si">%(errmsg)r</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
-            <span class="n">args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">initialconf</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="n">userconf</span><span class="p">,</span> <span class="n">errmsg</span><span class="o">=</span><span class="n">errmsg</span><span class="p">)</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="n">msg</span> <span class="o">%</span> <span class="n">args</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">userconf</span><span class="p">):</span>
+        <span class="c1"># initial config (with all options explained)</span>
+        <span class="k">with</span> <span class="n">importlib</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">path</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">PACKAGE_NAME</span><span class="si">}</span><span class="s2">.data&quot;</span><span class="p">,</span> <span class="s2">&quot;linkcheckerrc&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">initialconf</span><span class="p">:</span>
+            <span class="c1"># copy the initial configuration to the user configuration</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">make_userdir</span><span class="p">(</span><span class="n">userconf</span><span class="p">)</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">initialconf</span><span class="p">,</span> <span class="n">userconf</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">errmsg</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span>
+                    <span class="s2">&quot;could not copy initial configuration file </span><span class="si">%(src)r</span><span class="s2">&quot;</span>
+                    <span class="s2">&quot; to </span><span class="si">%(dst)r</span><span class="s2">: </span><span class="si">%(errmsg)r</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">initialconf</span><span class="p">,</span> <span class="n">dst</span><span class="o">=</span><span class="n">userconf</span><span class="p">,</span> <span class="n">errmsg</span><span class="o">=</span><span class="n">errmsg</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">LOG_CHECK</span><span class="p">,</span> <span class="n">msg</span> <span class="o">%</span> <span class="n">args</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">userconf</span></div>
 
 
@@ -780,7 +763,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2021 LinkChecker Authors.</p>
+    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2022 LinkChecker Authors.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

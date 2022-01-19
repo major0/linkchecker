@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; LinkChecker 10.0.1.post132+gd1078ed8 documentation</title>
+  <title>Index &mdash; LinkChecker 10.1.0.post20+g5ec0aec1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -31,7 +31,7 @@
             <img src="_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post132+gd1078ed8
+                10.1.0.post20+g5ec0aec1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -55,6 +55,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="upgrading.html">Upgrading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="upgrading.html#migrating-from-10-1-to-10-x">Migrating from 10.1 to 10.x</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrading.html#migrating-from-10-0-to-10-1">Migrating from 10.0 to 10.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrading.html#migrating-from-9-x-to-10-0">Migrating from 9.x to 10.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrading.html#migrating-from-8-x-to-9-0">Migrating from 8.x to 9.0</a></li>
@@ -235,6 +236,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="code/linkcheck/linkcheck.containers.html">linkcheck.containers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="code/linkcheck/linkcheck.cookies.html">linkcheck.cookies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code/linkcheck/linkcheck.data.html">linkcheck.data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="code/linkcheck/linkcheck.decorators.html">linkcheck.decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="code/linkcheck/linkcheck.director.html">linkcheck.director</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="code/linkcheck/linkcheck.director.aggregator.html">linkcheck.director.aggregator</a></li>
@@ -384,28 +386,28 @@
 </li>
       </ul></li>
       <li>
-    --config=FILENAME
+    --config
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-f">command line option</a>
 </li>
       </ul></li>
       <li>
-    --cookiefile=FILENAME
+    --cookiefile
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-cookiefile">command line option</a>
 </li>
       </ul></li>
       <li>
-    --debug=STRING
+    --debug
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-D">command line option</a>
 </li>
       </ul></li>
       <li>
-    --file-output=TYPE[/ENCODING][/FILENAME]
+    --file-output
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-F">command line option</a>
@@ -419,7 +421,7 @@
 </li>
       </ul></li>
       <li>
-    --ignore-url=REGEX
+    --ignore-url
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-ignore-url">command line option</a>
@@ -433,14 +435,14 @@
 </li>
       </ul></li>
       <li>
-    --nntp-server=STRING
+    --nntp-server
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-N">command line option</a>
 </li>
       </ul></li>
       <li>
-    --no-follow-url=REGEX
+    --no-follow-url
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-no-follow-url">command line option</a>
@@ -468,7 +470,7 @@
 </li>
       </ul></li>
       <li>
-    --output=TYPE[/ENCODING]
+    --output
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-o">command line option</a>
@@ -489,7 +491,7 @@
 </li>
       </ul></li>
       <li>
-    --recursion-level=NUMBER
+    --recursion-level
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-r">command line option</a>
@@ -503,7 +505,7 @@
 </li>
       </ul></li>
       <li>
-    --threads=NUMBER
+    --threads
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-t">command line option</a>
@@ -512,24 +514,24 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    --timeout=NUMBER
+    --timeout
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-timeout">command line option</a>
 </li>
       </ul></li>
       <li>
-    --user-agent=STRING
-
-      <ul>
-        <li><a href="man/linkchecker.html#cmdoption-user-agent">command line option</a>
-</li>
-      </ul></li>
-      <li>
-    --user=STRING
+    --user
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-u">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --user-agent
+
+      <ul>
+        <li><a href="man/linkchecker.html#cmdoption-user-agent">command line option</a>
 </li>
       </ul></li>
       <li>
@@ -547,24 +549,24 @@
 </li>
       </ul></li>
       <li>
-    -D STRING
+    -D
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-D">command line option</a>
 </li>
       </ul></li>
       <li>
-    -f FILENAME
-
-      <ul>
-        <li><a href="man/linkchecker.html#cmdoption-f">command line option</a>
-</li>
-      </ul></li>
-      <li>
-    -F TYPE[/ENCODING][/FILENAME]
+    -F
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-F">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -f
+
+      <ul>
+        <li><a href="man/linkchecker.html#cmdoption-f">command line option</a>
 </li>
       </ul></li>
       <li>
@@ -575,14 +577,14 @@
 </li>
       </ul></li>
       <li>
-    -N STRING
+    -N
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-N">command line option</a>
 </li>
       </ul></li>
       <li>
-    -o TYPE[/ENCODING]
+    -o
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-o">command line option</a>
@@ -603,21 +605,21 @@
 </li>
       </ul></li>
       <li>
-    -r NUMBER
+    -r
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-r">command line option</a>
 </li>
       </ul></li>
       <li>
-    -t NUMBER
+    -t
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-t">command line option</a>
 </li>
       </ul></li>
       <li>
-    -u STRING
+    -u
 
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-u">command line option</a>
@@ -953,23 +955,23 @@
       <ul>
         <li><a href="man/linkchecker.html#cmdoption-check-extern">--check-extern</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-f">--config=FILENAME</a>
+        <li><a href="man/linkchecker.html#cmdoption-f">--config</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-cookiefile">--cookiefile=FILENAME</a>
+        <li><a href="man/linkchecker.html#cmdoption-cookiefile">--cookiefile</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-D">--debug=STRING</a>
+        <li><a href="man/linkchecker.html#cmdoption-D">--debug</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-F">--file-output=TYPE[/ENCODING][/FILENAME]</a>
+        <li><a href="man/linkchecker.html#cmdoption-F">--file-output</a>
 </li>
         <li><a href="man/linkchecker.html#cmdoption-h">--help</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-ignore-url">--ignore-url=REGEX</a>
+        <li><a href="man/linkchecker.html#cmdoption-ignore-url">--ignore-url</a>
 </li>
         <li><a href="man/linkchecker.html#cmdoption-list-plugins">--list-plugins</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-N">--nntp-server=STRING</a>
+        <li><a href="man/linkchecker.html#cmdoption-N">--nntp-server</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-no-follow-url">--no-follow-url=REGEX</a>
+        <li><a href="man/linkchecker.html#cmdoption-no-follow-url">--no-follow-url</a>
 </li>
         <li><a href="man/linkchecker.html#cmdoption-no-robots">--no-robots</a>
 </li>
@@ -977,49 +979,49 @@
 </li>
         <li><a href="man/linkchecker.html#cmdoption-no-warnings">--no-warnings</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-o">--output=TYPE[/ENCODING]</a>
+        <li><a href="man/linkchecker.html#cmdoption-o">--output</a>
 </li>
         <li><a href="man/linkchecker.html#cmdoption-p">--password</a>
 </li>
         <li><a href="man/linkchecker.html#cmdoption-q">--quiet</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-r">--recursion-level=NUMBER</a>
+        <li><a href="man/linkchecker.html#cmdoption-r">--recursion-level</a>
 </li>
         <li><a href="man/linkchecker.html#cmdoption-stdin">--stdin</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-t">--threads=NUMBER</a>
+        <li><a href="man/linkchecker.html#cmdoption-t">--threads</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-timeout">--timeout=NUMBER</a>
+        <li><a href="man/linkchecker.html#cmdoption-timeout">--timeout</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-user-agent">--user-agent=STRING</a>
+        <li><a href="man/linkchecker.html#cmdoption-u">--user</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-u">--user=STRING</a>
+        <li><a href="man/linkchecker.html#cmdoption-user-agent">--user-agent</a>
 </li>
         <li><a href="man/linkchecker.html#cmdoption-0">--verbose</a>
 </li>
         <li><a href="man/linkchecker.html#cmdoption-V">--version</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-D">-D STRING</a>
+        <li><a href="man/linkchecker.html#cmdoption-D">-D</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-f">-f FILENAME</a>
+        <li><a href="man/linkchecker.html#cmdoption-f">-f</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-F">-F TYPE[/ENCODING][/FILENAME]</a>
+        <li><a href="man/linkchecker.html#cmdoption-F">-F</a>
 </li>
         <li><a href="man/linkchecker.html#cmdoption-h">-h</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-N">-N STRING</a>
+        <li><a href="man/linkchecker.html#cmdoption-N">-N</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-o">-o TYPE[/ENCODING]</a>
+        <li><a href="man/linkchecker.html#cmdoption-o">-o</a>
 </li>
         <li><a href="man/linkchecker.html#cmdoption-p">-p</a>
 </li>
         <li><a href="man/linkchecker.html#cmdoption-q">-q</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-r">-r NUMBER</a>
+        <li><a href="man/linkchecker.html#cmdoption-r">-r</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-t">-t NUMBER</a>
+        <li><a href="man/linkchecker.html#cmdoption-t">-t</a>
 </li>
-        <li><a href="man/linkchecker.html#cmdoption-u">-u STRING</a>
+        <li><a href="man/linkchecker.html#cmdoption-u">-u</a>
 </li>
         <li><a href="man/linkchecker.html#cmdoption-V">-V</a>
 </li>
@@ -1291,15 +1293,11 @@
 </li>
       <li><a href="code/linkcheck/linkcheck.plugins.locationinfo.html#linkcheck.plugins.locationinfo.get_geoip_dat">get_geoip_dat() (in module linkcheck.plugins.locationinfo)</a>
 </li>
-      <li><a href="code/linkcheck/linkcheck.i18n.html#linkcheck.i18n.get_headers_lang">get_headers_lang() (in module linkcheck.i18n)</a>
-</li>
       <li><a href="code/linkcheck/linkcheck.lc_cgi.html#linkcheck.lc_cgi.get_host_name">get_host_name() (in module linkcheck.lc_cgi)</a>
 </li>
       <li><a href="code/linkcheck/linkcheck.loader.html#linkcheck.loader.get_importable_files">get_importable_files() (in module linkcheck.loader)</a>
 </li>
       <li><a href="code/linkcheck/linkcheck.checker.html#linkcheck.checker.get_index_html">get_index_html() (in module linkcheck.checker)</a>
-</li>
-      <li><a href="code/linkcheck/linkcheck.html#linkcheck.get_install_data">get_install_data() (in module linkcheck)</a>
 </li>
       <li><a href="code/linkcheck/linkcheck.checker.internpaturl.html#linkcheck.checker.internpaturl.get_intern_pattern">get_intern_pattern() (in module linkcheck.checker.internpaturl)</a>
 
@@ -1374,10 +1372,6 @@
       <li><a href="code/linkcheck/linkcheck.checker.httpurl.html#linkcheck.checker.httpurl.HttpUrl.get_robots_txt_url">get_robots_txt_url() (linkcheck.checker.httpurl.HttpUrl method)</a>
 </li>
       <li><a href="code/linkcheck/linkcheck.lock.html#linkcheck.lock.get_semaphore">get_semaphore() (in module linkcheck.lock)</a>
-</li>
-      <li><a href="code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.get_share_dir">get_share_dir() (in module linkcheck.configuration)</a>
-</li>
-      <li><a href="code/linkcheck/linkcheck.configuration.html#linkcheck.configuration.get_share_file">get_share_file() (in module linkcheck.configuration)</a>
 </li>
       <li><a href="code/linkcheck/linkcheck.fileutil.html#linkcheck.fileutil.get_size">get_size() (in module linkcheck.fileutil)</a>
 </li>
@@ -1549,15 +1543,13 @@
         <li><a href="code/linkcheck/linkcheck.checker.urlbase.html#linkcheck.checker.urlbase.UrlBase.is_directory">(linkcheck.checker.urlbase.UrlBase method)</a>
 </li>
       </ul></li>
-      <li><a href="code/linkcheck/linkcheck.checker.urlbase.html#linkcheck.checker.urlbase.UrlBase.is_file">is_file() (linkcheck.checker.urlbase.UrlBase method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="code/linkcheck/linkcheck.checker.urlbase.html#linkcheck.checker.urlbase.UrlBase.is_file">is_file() (linkcheck.checker.urlbase.UrlBase method)</a>
+</li>
       <li><a href="code/linkcheck/linkcheck.director.aggregator.html#linkcheck.director.aggregator.Aggregate.is_finished">is_finished() (linkcheck.director.aggregator.Aggregate method)</a>
 </li>
       <li><a href="code/linkcheck/linkcheck.htmlutil.linkparse.html#linkcheck.htmlutil.linkparse.is_form_get">is_form_get() (in module linkcheck.htmlutil.linkparse)</a>
-</li>
-      <li><a href="code/linkcheck/linkcheck.loader.html#linkcheck.loader.is_frozen">is_frozen() (in module linkcheck.loader)</a>
 </li>
       <li><a href="code/linkcheck/linkcheck.checker.urlbase.html#linkcheck.checker.urlbase.UrlBase.is_html">is_html() (linkcheck.checker.urlbase.UrlBase method)</a>
 </li>
@@ -1637,10 +1629,6 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="code/linkcheck/linkcheck.i18n.html#linkcheck.i18n.lang_name">lang_name() (in module linkcheck.i18n)</a>
-</li>
-      <li><a href="code/linkcheck/linkcheck.i18n.html#linkcheck.i18n.lang_trans">lang_trans() (in module linkcheck.i18n)</a>
-</li>
       <li><a href="code/linkcheck/linkcheck.cmdline.html#linkcheck.cmdline.LCArgumentParser">LCArgumentParser (class in linkcheck.cmdline)</a>
 </li>
       <li><a href="code/linkcheck/linkcheck.configuration.confparse.html#linkcheck.configuration.confparse.LCConfigParser">LCConfigParser (class in linkcheck.configuration.confparse)</a>
@@ -1898,6 +1886,13 @@
 
       <ul>
         <li><a href="code/linkcheck/linkcheck.cookies.html#module-linkcheck.cookies">module</a>
+</li>
+      </ul></li>
+      <li>
+    linkcheck.data
+
+      <ul>
+        <li><a href="code/linkcheck/linkcheck.data.html#module-linkcheck.data">module</a>
 </li>
       </ul></li>
       <li>
@@ -2537,6 +2532,8 @@
         <li><a href="code/linkcheck/linkcheck.containers.html#module-linkcheck.containers">linkcheck.containers</a>
 </li>
         <li><a href="code/linkcheck/linkcheck.cookies.html#module-linkcheck.cookies">linkcheck.cookies</a>
+</li>
+        <li><a href="code/linkcheck/linkcheck.data.html#module-linkcheck.data">linkcheck.data</a>
 </li>
         <li><a href="code/linkcheck/linkcheck.decorators.html#module-linkcheck.decorators">linkcheck.decorators</a>
 </li>
@@ -3381,7 +3378,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2021 LinkChecker Authors.</p>
+    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2022 LinkChecker Authors.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.plugins &mdash; LinkChecker 10.0.1.post132+gd1078ed8 documentation</title>
+  <title>linkcheck.plugins &mdash; LinkChecker 10.1.0.post20+g5ec0aec1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -34,7 +34,7 @@
             <img src="../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post132+gd1078ed8
+                10.1.0.post20+g5ec0aec1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -58,6 +58,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../upgrading.html">Upgrading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-10-1-to-10-x">Migrating from 10.1 to 10.x</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-10-0-to-10-1">Migrating from 10.0 to 10.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-9-x-to-10-0">Migrating from 9.x to 10.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-8-x-to-9-0">Migrating from 8.x to 9.0</a></li>
@@ -238,6 +239,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.containers.html">linkcheck.containers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.cookies.html">linkcheck.cookies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkcheck.data.html">linkcheck.data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.decorators.html">linkcheck.decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkcheck.director.html">linkcheck.director</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="linkcheck.director.aggregator.html">linkcheck.director.aggregator</a></li>
@@ -362,7 +364,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.plugins.get_plugin_classes" title="linkcheck.plugins.get_plugin_classes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_plugin_classes</span></code></a>(modules)</p></td>
 <td><p>Get plugin classes for given modules.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.plugins.get_plugin_modules" title="linkcheck.plugins.get_plugin_modules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_plugin_modules</span></code></a>(folders[, package, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#linkcheck.plugins.get_plugin_modules" title="linkcheck.plugins.get_plugin_modules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_plugin_modules</span></code></a>(folders)</p></td>
 <td><p>Get plugin modules for given folders.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#linkcheck.plugins.run_plugins" title="linkcheck.plugins.run_plugins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_plugins</span></code></a>(plugins, url_data[, ...])</p></td>
@@ -422,7 +424,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="linkcheck.plugins.get_plugin_modules">
-<span class="sig-prename descclassname"><span class="pre">linkcheck.plugins.</span></span><span class="sig-name descname"><span class="pre">get_plugin_modules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'plugins'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parentpackage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linkcheck.dummy'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/plugins.html#get_plugin_modules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.plugins.get_plugin_modules" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">linkcheck.plugins.</span></span><span class="sig-name descname"><span class="pre">get_plugin_modules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folders</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/linkcheck/plugins.html#get_plugin_modules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#linkcheck.plugins.get_plugin_modules" title="Permalink to this definition"></a></dt>
 <dd><p>Get plugin modules for given folders.</p>
 </dd></dl>
 
@@ -484,7 +486,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2021 LinkChecker Authors.</p>
+    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2022 LinkChecker Authors.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

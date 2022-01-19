@@ -13,7 +13,6 @@ linkcheck
 
    .. autosummary::
    
-      get_install_data
       get_link_pat
       init_i18n
       module_path
@@ -54,6 +53,7 @@ linkcheck
    linkcheck.configuration
    linkcheck.containers
    linkcheck.cookies
+   linkcheck.data
    linkcheck.decorators
    linkcheck.director
    linkcheck.dummy

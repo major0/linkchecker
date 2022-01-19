@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>linkcheck.i18n &mdash; LinkChecker 10.0.1.post132+gd1078ed8 documentation</title>
+  <title>linkcheck.i18n &mdash; LinkChecker 10.1.0.post20+g5ec0aec1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -31,7 +31,7 @@
             <img src="../../_static/logo128x128.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                10.0.1.post132+gd1078ed8
+                10.1.0.post20+g5ec0aec1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -55,6 +55,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../upgrading.html">Upgrading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-10-1-to-10-x">Migrating from 10.1 to 10.x</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-10-0-to-10-1">Migrating from 10.0 to 10.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-9-x-to-10-0">Migrating from 9.x to 10.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../upgrading.html#migrating-from-8-x-to-9-0">Migrating from 8.x to 9.0</a></li>
@@ -235,6 +236,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../code/linkcheck/linkcheck.containers.html">linkcheck.containers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../code/linkcheck/linkcheck.cookies.html">linkcheck.cookies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../code/linkcheck/linkcheck.data.html">linkcheck.data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../code/linkcheck/linkcheck.decorators.html">linkcheck.decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../code/linkcheck/linkcheck.director.html">linkcheck.director</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../code/linkcheck/linkcheck.director.aggregator.html">linkcheck.director.aggregator</a></li>
@@ -470,30 +472,6 @@
     <span class="k">return</span> <span class="n">default_language</span></div>
 
 
-<div class="viewcode-block" id="get_headers_lang"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.i18n.html#linkcheck.i18n.get_headers_lang">[docs]</a><span class="k">def</span> <span class="nf">get_headers_lang</span><span class="p">(</span><span class="n">headers</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return preferred supported language in given HTTP headers.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="s1">&#39;Accept-Language&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">default_language</span>
-    <span class="n">languages</span> <span class="o">=</span> <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
-    <span class="c1"># sort with preference values</span>
-    <span class="n">pref_languages</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">lang</span> <span class="ow">in</span> <span class="n">languages</span><span class="p">:</span>
-        <span class="n">pref</span> <span class="o">=</span> <span class="mf">1.0</span>
-        <span class="k">if</span> <span class="s2">&quot;;&quot;</span> <span class="ow">in</span> <span class="n">lang</span><span class="p">:</span>
-            <span class="n">lang</span><span class="p">,</span> <span class="n">_pref</span> <span class="o">=</span> <span class="n">lang</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">pref</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">_pref</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="k">pass</span>
-        <span class="n">pref_languages</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">pref</span><span class="p">,</span> <span class="n">lang</span><span class="p">))</span>
-    <span class="n">pref_languages</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-    <span class="c1"># search for lang</span>
-    <span class="k">for</span> <span class="n">lang</span> <span class="ow">in</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pref_languages</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">lang</span> <span class="ow">in</span> <span class="n">supported_languages</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">lang</span>
-    <span class="k">return</span> <span class="n">default_language</span></div>
-
-
 <div class="viewcode-block" id="get_locale"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.i18n.html#linkcheck.i18n.get_locale">[docs]</a><span class="k">def</span> <span class="nf">get_locale</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Search the default platform locale and norm it.</span>
 <span class="sd">    @returns (locale, encoding)</span>
@@ -528,26 +506,6 @@
     <span class="k">return</span> <span class="n">loc</span></div>
 
 
-<span class="n">lang_names</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;en&#39;</span><span class="p">:</span> <span class="s1">&#39;English&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;de&#39;</span><span class="p">:</span> <span class="s1">&#39;Deutsch&#39;</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="n">lang_transis</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;de&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;en&#39;</span><span class="p">:</span> <span class="s1">&#39;German&#39;</span><span class="p">},</span>
-    <span class="s1">&#39;en&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;de&#39;</span><span class="p">:</span> <span class="s1">&#39;Englisch&#39;</span><span class="p">},</span>
-<span class="p">}</span>
-
-
-<div class="viewcode-block" id="lang_name"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.i18n.html#linkcheck.i18n.lang_name">[docs]</a><span class="k">def</span> <span class="nf">lang_name</span><span class="p">(</span><span class="n">lang</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return full name of given language.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">lang_names</span><span class="p">[</span><span class="n">lang</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="lang_trans"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.i18n.html#linkcheck.i18n.lang_trans">[docs]</a><span class="k">def</span> <span class="nf">lang_trans</span><span class="p">(</span><span class="n">lang</span><span class="p">,</span> <span class="n">curlang</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return translated full name of given language.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">lang_transis</span><span class="p">[</span><span class="n">lang</span><span class="p">][</span><span class="n">curlang</span><span class="p">]</span></div>
-
-
 <div class="viewcode-block" id="get_encoded_writer"><a class="viewcode-back" href="../../code/linkcheck/linkcheck.i18n.html#linkcheck.i18n.get_encoded_writer">[docs]</a><span class="k">def</span> <span class="nf">get_encoded_writer</span><span class="p">(</span><span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Get wrapped output writer with given encoding and error handling.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -563,7 +521,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2021 LinkChecker Authors.</p>
+    <p>&#169; Copyright 2000-2016 Bastian Kleineidam, 2010-2022 LinkChecker Authors.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
